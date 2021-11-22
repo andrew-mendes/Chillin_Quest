@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Quest
+{% endblock %}
+{% block main %}
+<!-- Modal -->
+<div class="modal fade merri" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <form class="modal-dialog modal-dialog-centered" action="/editquest/{{ questinfo['id'] }}" method="POST" id="editquest-form" autocomplete="off">
+    <div class="modal-content tr-full">
+      <!-- Header -->
+      <div class="modal-header justify-content-start darkbar" style="background-color: rgb(255, 255, 255);">
+        <img src="/static/anvil.png" style="max-width: 50px;">
+        <h5 class="modal-title text-white blackshadow" id="editquestModalLabel">&nbsp;Edit Quest</h5>
+      </div>
+      <!-- Body -->
+      <div class="modal-body paperbody">
+        <div class="d-flex flex-column form mb-3">
+          <input value="{{ questinfo['id'] }}" type="text" class="form-control" name="quest-edit-name" id="quest-edit-id" disabled hidden>
+        </div>
+        <!-- Quest Name -->
+        <div class="form d-flex flex-column mb-3">
+          <label class="text-start text-black" for="quest-edit-name">Quest Name:</label>
+          <input value="{{ questinfo['title'] }}" type="text" class="form-control" name="quest-edit-name" id="quest-edit-name" required>
+        </div>
+        <!-- Quest Description-->
+        <div class="form d-flex flex-column mb-3">
+          <label class="text-start text-black" for="quest-edit-text">Description:</label>
+          <textarea style="white-space: pre-wrap;" type="text" class="form-control" name="quest-edit-text" id="quest-edit-text" required>{{ questinfo['description'] }}</textarea>
+        </div>
+        <!-- Quest Reward -->
+        <div class="form d-flex flex-column mb-3">
+            <label class="text-start text-black" for="quest-edit-prize">Reward (Optional):</label>
+            <input value="{{ questinfo['reward'] }}" type="text" class="form-control" name="quest-edit-prize" id="quest-edit-prize">
+        </div>
+      </div>
+      <!-- Buttons -->
+      <div class="modal-footer darkbottom">
+          <!-- Nevermind -->
+          <a href="/"><button type="button" class="btn btn-black btn-outline">Nevermind</button></a>
+          <!-- Save Quest -->
+          <button type="submit" class="btn btn-green btn-outline">Save it!</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

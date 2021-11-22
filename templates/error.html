@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+<div id="errorModal" class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content errormessage border-0">
+            <div class="modal-header d-flex justify-content-center darkbar p-0">
+                <h2 class="modal-title">Error {{ code }}</h5>
+            </div>
+            <div class="modal-body lh-lg paperbody d-flex flex-column justify-content-center">
+                {% for paragraph in message %}
+                    <h3>{{ paragraph }}</h3>
+                {% endfor %}
+                <img src="/static/arrowknee.png" style="max-height: 15rem; margin: auto;">
+            </div>
+            <div class="modal-footer darkbottom p-1">
+                <button type="button" class="btn btn-green btn-outline" onclick="goBack()">Take me back</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// Enables the Take me Back button
+function goBack() {
+    window.history.go(-1);
+}
+</script>
+{% endblock %}

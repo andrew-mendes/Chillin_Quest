@@ -1,0 +1,20 @@
+<!--Modal-->
+<div class="modal fade" id="dqMod{{ quest['id'] }}" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content merri tr-black">
+            <div class="modal-header darkbar d-flex justify-content-start p-1">
+                <img src="/static/trash.png" style="max-height: 50px; width: auto;">
+                <h5 class="modal-title text-white blackshadow">&nbsp;Delete Quest</h5>
+            </div>
+            <div class="modal-body paperbody d-flex flex-row gap-2 justify-content-center">
+                <h5 class="modal-body text-black">Are you sure, traveller?</h5>
+            </div>
+            <div class="modal-footer darkbottom d-flex flex-row gap-2 p-2 justify-content-center">
+                <form action="/delete/{{ quest['id'] }}" method="POST">
+                    <button type="submit" class="btn btn-red btn-outline" data-bs-toggle="modal" data-bs-target="#dqMod{{ quest['id'] }}">Just do it!</button>
+                </form>
+                <button type="button" class="btn btn-green btn-outline" data-bs-dismiss="modal">Take me back</button>
+            </div>
+        </div>
+    </div>
+</div>

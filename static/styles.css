@@ -1,0 +1,406 @@
+/*IMAGE CUSTOMIZATION*/
+.avatar {
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(304deg, rgba(139,139,139,1) 0%, rgba(73,72,72,1) 0%, rgba(135,135,135,1) 16%, rgba(212,212,212,1) 21%, rgba(255,255,255,1) 27%, rgba(196,196,196,1) 36%, rgba(176,176,176,1) 57%, rgba(233,233,233,1) 66%, rgba(134,134,134,1) 78%, rgba(180,180,180,1) 89%, rgba(214,213,213,1) 100%) 1;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    outline: 1px solid black;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+}
+
+.imgborder {
+    border: 1px solid gray;
+}
+
+.knee {
+    min-height: 100vh;
+    max-width: 50%;
+    background-image: url(/static/arrowknee.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+/*Refresh Icon*/
+.refresh:hover {
+    filter: brightness(200%);
+}
+
+/*BUTTONS*/
+.btn-outline {
+    outline: 1px solid black;
+}
+
+.btn-red:hover{
+    color: black;
+    border: 3px solid #590101;
+    box-shadow: -5px 0 5px 1px #590101 inset, 5px 0 5px 1px #590101 inset, 0 0 10px #ffffcc;
+    background: linear-gradient(180deg, rgba(204,0,0,1) 0%, rgba(255,164,114,1) 22%, rgba(255,81,23,1) 71%, rgba(204,0,0,1) 85%, rgba(139,0,0,1) 93%);
+}
+
+.btn-red {
+    color: white;
+    border: 3px solid #590101;
+    box-shadow: -5px 0 5px 1px #590101 inset, 5px 0 5px 1px #590101 inset;
+    background: linear-gradient(180deg, rgba(189,32,11,1) 0%, rgba(240,112,72,1) 19%, rgba(196,34,5,1) 41%, rgba(189,32,11,1) 73%, rgba(125,0,0,1) 84%, rgba(89,1,1,1) 93%);}
+
+.btn-green:hover{
+    color: black;
+    border: 3px solid #335404;
+    box-shadow: -5px 0 5px 1px #335404 inset, 5px 0 5px 1px #335404 inset, 0 0 10px #ffffcc;
+    background: linear-gradient(180deg, rgba(88,135,25,1) 0%, rgba(156,222,74,1) 22%, rgba(94,162,25,1) 68%, rgba(88,135,25,1) 80%, rgba(51,84,4,1) 93%);
+}
+
+.btn-green {
+    color: white;
+    border: 3px solid #04542f;
+    box-shadow: -5px 0 5px 1px #04542f inset, 5px 0 5px 1px #04542f inset;
+    background: linear-gradient(180deg, rgba(0,125,55,1) 0%, rgba(71,245,123,1) 19%, rgba(6,139,64,1) 41%, rgba(8,124,59,1) 73%, rgba(1,89,16,1) 84%, rgba(2,78,35,1) 93%);}
+
+.btn-black:hover{
+    color: black;
+    border: 3px solid #131313;
+    box-shadow: -5px 0 5px 1px #131313 inset, 5px 0 5px 1px #131313 inset, 0 0 10px #ffffcc;
+    background: linear-gradient(180deg, rgba(135,135,135,1) 0%, rgba(224,224,224,1) 22%, rgba(155,156,155,1) 68%, rgba(140,140,140,1) 80%, rgba(80,80,80,1) 93%);}
+
+.btn-black {
+    color: white;
+    border: 3px solid #131313;
+    box-shadow: -5px 0 5px 1px #131313 inset, 5px 0 5px 1px #131313 inset;
+    background: linear-gradient(180deg, rgba(54,53,53,1) 0%, rgba(158,158,158,1) 19%, rgba(63,64,63,1) 41%, rgba(63,64,63,1) 78%, rgba(43,43,43,1) 84%, rgba(19,19,19,1) 93%);
+}
+
+/*BROWN BARS*/
+.darkbar {
+    box-shadow: -5px 0 5px 1px rgba(28,19,12,1) inset, 5px 0 5px 1px rgba(28,19,12,1) inset;
+    background: rgb(28,19,12);
+    background: linear-gradient(180deg, rgba(28,19,12,1) 0%, rgba(94,72,51,1) 17%, rgba(130,105,80,1) 29%, rgba(99,77,53,1) 71%, rgba(37,26,20,1) 92%, rgba(28,19,12,1) 100%);
+    border: 5px solid;
+    border-image:linear-gradient(to top left, #121301 88%, #131402) 10;
+    outline: 1px solid black;
+}
+
+/*Bottom brown bars, usually for buttons*/
+.darkbottom {
+    background: linear-gradient(90deg, rgba(28,19,12,1) 100%, rgba(28,19,12,1) 100%);
+    background: linear-gradient(to bottom, #5e4833 0%, #1c130c 100%);
+    border-image:linear-gradient(to top left, #121301 88%, #131402) 10;
+    outline: 1px solid black;
+}
+
+.darkborder {
+    border: 5px solid;
+    border-radius: 0;
+    border-image: linear-gradient(to bottom, #121301 0%,#33261b 2%,#3f2f22 7%,#80674e 20%,#80674e 20%,#33271a 45%,#33271a 56%,#121301 71%,#2c211a 84%,#121301 100%) 10; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121301', endColorstr='#121301',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    /*width: 50%;*/
+}
+
+/*QUESTS*/
+
+/*Yellowish glow over selected quests*/
+.accordion-button:focus {
+    box-shadow: 0 0 10px 7px #ffffcc !important;
+    text-shadow: 1px 1px 1px white, 0 0 10px #ffffcc, 0 0 10px #ffffcc;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/*Complete quests goldbar*/
+.qdone {
+    border: 1px solid;
+    border-image:linear-gradient(to top left,#d19c0b 100%, #d19c0b 78%) 10;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fae9be+0,d19c0b+16,a37407+30,d19c0b+41,d19c0b+41,f9eecd+50,ecb00c+70,f7de97+90,ecb00c+100 */
+    background: #fae9be; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #fae9be 0%, #d19c0b 16%, #a37407 30%, #d19c0b 41%, #d19c0b 41%, #f9eecd 50%, #ecb00c 70%, #f7de97 90%, #ecb00c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #fae9be 0%,#d19c0b 16%,#a37407 30%,#d19c0b 41%,#d19c0b 41%,#f9eecd 50%,#ecb00c 70%,#f7de97 90%,#ecb00c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(-135deg,  #fae9be 0%,#d19c0b 16%,#a37407 30%,#d19c0b 41%,#d19c0b 41%,#f9eecd 50%,#ecb00c 70%,#f7de97 90%,#ecb00c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fae9be', endColorstr='#ecb00c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    outline: 1px solid black;
+}
+
+.carving {
+    font: bold;
+    font-size: 125%;
+    background-color: DarkGoldenRod;
+     color: transparent;
+  text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+
+}
+
+/*Open quests gray bar*/
+.qopen {
+    background-image: linear-gradient(to top left, gray 0%, #e2ebf0 100%);
+    border: 1px solid;
+    border-image:linear-gradient(to top left, Dimgray, #cccccc) 10;
+    outline: 1px solid black;
+}
+
+/*Reward Flash*/
+.reward {
+    color: black;
+    text-shadow: 1px 0 0 #ffffcc, -1px 0 0 #ffffcc, 0 1px 0 #ffffcc, 0 -1px 0 #ffffcc,
+    0 0 10px #ffffcc;
+}
+
+/*BACKGROUND COLORS*/
+.paperbody {
+
+    background: linear-gradient(to top left, khaki, linen);
+    box-shadow: 0px 0px 30px 15px #b37220 inset;
+    outline: 1px solid black;
+}
+
+.tr-full {
+    background-color: transparent;
+}
+
+.tr-black {
+    background-color: rgba(0,0,0,0.50);
+}
+
+/*SPECIAL DIVS*/
+/*Main Div*/
+.container-custom {
+    width: 100%;
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+.errormessage {
+    color: yellow;
+    position: relative;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: 'Merriweather', serif;
+}
+
+/*FORMS CUSTOMIZATION*/
+/*Outer glow in selected inputs and text areas*/
+input:focus {
+  outline: none !important;
+  border:1px solid white !important;
+  /* Forms yellowish outer glow */
+  box-shadow: 0 0 10px #ffffcc !important;
+}
+
+textarea:focus {
+    outline: none !important;
+    border:1px solid white !important;
+    /* Forms yellowish outer glow */
+    box-shadow: 0 0 10px #ffffcc !important;
+  }
+
+/* Form changes */
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+
+}
+
+/*Paper color*/
+.lightwood {
+    background-color: #BA9C73;
+    border: 1px brown;
+}
+
+/*Brown placeholder in search*/
+.placeholder-brown::placeholder{ /*Chrome, Firefox, Opera, Safari 10.1+*/
+    color: #331a00;
+    opacity: 0.8;
+}
+
+/*Transparency*/
+.form-tr::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.8; /* Firefox */
+}
+
+/*QUEST ACCORDION FOOTER BUTTONS*/
+/*Green done*/
+.link-button-done {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: #198754;
+    background-color: transparent;
+}
+
+/*Gray done*/
+.link-button-done:hover {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: gray;
+    background-color: transparent;
+}
+
+/*Gray open*/
+.link-button-open {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: gray;
+    background-color: transparent;
+}
+
+/*Green open*/
+.link-button-open:hover {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: #198754;
+    background-color: transparent;
+}
+
+/*Gray delete*/
+.link-button-delete {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: gray;
+    background-color: transparent;
+}
+
+/*Red delete*/
+.link-button-delete:hover {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: #dc3545;
+    background-color: transparent;
+}
+
+/*Gray edit*/
+.link-button-edit {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: gray;
+    background-color: transparent;
+}
+
+/*Blue edit*/
+.link-button-edit:hover {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    color: #0d6efd;
+    background-color: transparent;
+}
+
+/*New quest border*/
+.newquest {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/*Hides bootstrap standard blue box border when a button is pressed*/
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+/*New quest glow*/
+.newquest:hover {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 10px #ffffcc;
+    filter: brightness(150%);
+}
+
+/*FONTS*/
+.bigger{
+    font-size: 120%;
+}
+
+/*Medieval*/
+.merri {
+    font-family: 'Merriweather', serif;
+}
+
+.blackshadow {
+    text-shadow: 1px 1px black;
+}
+
+.glow {
+    text-shadow: 1px 1px 1px DarkGoldenRod, 0 0 10px #ffffcc, 0 0 10px #ffffcc;
+}
+
+.quest:not(.collapsed) {
+    color: black;
+    font-family: 'Merriweather', serif;
+
+}
+
+.quest {
+    color: black;
+    font-family: 'Merriweather', serif;
+
+}
+
+.text-pale {
+    color: PaleTurquoise;
+}
+
+.text-shadow {
+    text-shadow: 3px 3px black;
+}
+
+/*LAYOUT ORGANIZATION AND PECULIARITIES*/
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(/static/background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #0e1907;
+}
+
+/*This keeps login forms in the middle of the screen*/
+.p25vh {
+    padding-top: 25vh;
+}
+
+/* Hides ugly standard upload button :) */
+::-webkit-file-upload-button {
+   display: none;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+#error {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#form-gen {
+    margin-top: 15vh !important;
+}
+

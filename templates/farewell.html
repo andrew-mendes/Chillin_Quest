@@ -1,0 +1,23 @@
+<!--Modal-->
+<div class="modal fade" id="farewellModal" tabindex="-1">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content merri tr-black">
+            <div class="modal-header darkbar d-flex justify-content-start p-1">
+                <img src="/static/departure.png" style="max-height: 50px; width: auto;">
+                <h5 class="modal-title text-white">Delete Account</h5>
+            </div>
+            <div class="modal-body paperbody gap-2 justify-content-center">
+                <h5 class="text-black">Are you sure, traveller?</h5>
+                <h5 class="text-danger bg-warning"><b>BEWARE:</b></h5>
+                <h5 class="text-black">You will lose all your progress and it will remain only in your memories.</h5>
+            </div>
+            <div class="modal-footer darkbottom d-flex flex-row gap-2 p-2 justify-content-center">
+                <form class="d-flex flex-column" action="farewell" method="POST">
+                    <input class="form-control mb-2" type="text" name="deleteconfirm" placeholder="Type DELETE and confirm">
+                    <button type="submit" class="btn btn-black btn-outline" data-bs-toggle="modal" data-bs-target="#farewellModal">Sorry, it's goodbye for us!</button>
+                </form>
+                <button type="button" class="btn btn-green btn-outline mt-1" data-bs-dismiss="modal">I'm jesting! Take me back.</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div id='ab{{ quest["id"] }}' class="accordion-collapse collapse" data-parent="#accordion_main" aria-labelledby='ah{{ quest["id"] }}'>
+    <div class="accordion-body merri paperbody pb-1">
+        <div style="white-space: pre-line;"><i>{{ quest['description'] }}</i></div>
+        <hr class="mb-1">
+        {% if quest['done'] == True %}
+            <div class="merri text-success text-center"><i>Completed on {{ quest['timestamp'].replace("-", "/").replace(" ", " at ") }}</i></div>
+        {% endif %}
+        <!--Bottom row-->
+        <div class="d-flex flex-row align-content-center gap-2">
+            <!--Reward-->
+            <div class="d-flex align-self-center col-4">
+                {% if quest['done'] != true %}
+                <div><b>Reward:&nbsp;</b>{{ quest['reward'] }}</div>
+                {% else %}
+                <div class="reward"><b>Reward:&nbsp;</b>{{ quest['reward'] }}</div>
+                {% endif %}
+            </div>
+            <!--Complete Button-->
+            <div class="d-flex align-self-center justify-content-center col-4">
+                <form action="/done/{{ quest['id'] }}" method="POST">
+                        {% if quest['done'] != true %}
+                            <button class="btn btn-outline-light link-button-open" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as completed">
+                            <i class="bi bi-check-square"></i>
+                            </button>
+                        {% else %}
+                            <button class="btn btn-outline-light link-button-done" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Undo completed">
+                            <i class="bi bi-check-square-fill"></i>
+                            </button>
+                        {% endif %}
+                </form>
+            </div>
+            <div class="d-flex flex-row align-self-center justify-content-end col-4">
+                <!--Edit Quest-->
+                <form action="/editquest/{{ quest['id'] }}" method="GET">
+                    <button class="btn btn-outline-light link-button-edit" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                </form>
+                <!--Call Delete Quest Modal-->
+                <button class="btn btn-outline-light link-button-delete" data-bs-toggle="modal" data-bs-target="#dqMod{{ quest['id'] }}" type="button"><i class="bi bi-trash-fill" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+

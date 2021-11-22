@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+{% if change == True %}
+  <div class="alert alert-info alert-dismissable show fade" role="alert">
+        <div>
+            <strong>Will miss you!</strong> Sorry to see you go. :'( &nbsp; &nbsp;
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+{% endif %}
+<div class="d-flex align-self-center justify-content-center mx-auto p25vh">
+    <form action="/login" method="POST">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <p></p>
+        <div class="mb-3">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <p></p>
+        <div class="d-flex flex-row justify-content-center mb-3 merri">
+        <button class="btn btn-red btn-outline col-5 me-1" type="submit">Log In</button>
+        <a class="btn btn-red btn-outline col-6 ms-1" type="button" href="/register">Register</a>
+        </button>
+    </form>
+</div>
+{% endblock %}

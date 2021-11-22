@@ -1,0 +1,14 @@
+{% for quest in quests %}
+{% if quest['done'] == true %}
+<div class="accordion accordion-flush mb-3" id="accordion_main">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id='ah{{ quest["id"] }}'>
+        <button class="accordion-button collapsed fs-5 quest qdone" type="button" data-bs-toggle="collapse" data-bs-target='#ab{{ quest["id"] }}' aria-expanded="true" aria-controls='ab{{ quest["id"] }}'>
+        {{ quest['title'] }}
+        </button>
+        </h2>
+        {% include "quest.html" ignore missing %}
+    </div>
+</div>
+{% endif %}
+{% endfor %}
