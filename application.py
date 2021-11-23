@@ -1,13 +1,11 @@
-import os, re, string, base64, imghdr, traceback, datetime
+import re, string, base64, datetime
 
 from cs50 import SQL
 
-from flask import Flask, flash, jsonify, redirect, render_template, request, send_file, session, url_for
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
-from io import BytesIO
 from tempfile import mkdtemp
 
-from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 
@@ -24,23 +22,24 @@ app = Flask(__name__)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///chillinquest.db")
 
-# Ensure templates are auto-reloaded
-app.config["SECRET_KEY"] = "secret"
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-Session(app)
-
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
-    response.headers["Cache-Control"] = "public, max-age=525600"
-    response.headers["Expires"] = 525600
-    #response.headers["Pragma"] = "no-cache"
-    return response
+    if request.path.startswith('/static/background.jpg'):
+        response.headers["Cache-Control"] = "public, max-age=525600"
+        response.headers["Expires"] = 525600
+    else:
+        response.headers["Cache-Control"] = "no-cache"
+        response.headers["Pragma"] = "no-cache"
+    
+    return response    
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+# Configures secret key
+app.config["SECRET_KEY"] = "secret"
 Session(app)
 
 
@@ -275,7 +274,7 @@ def logout():
     session.clear()
 
     # Redirect user to login form
-    return redirect("/")
+    return render_template("login.html")
 
 @app.route("/picture", methods=["POST"])
 @login_required
@@ -323,7 +322,6 @@ def profile():
 
     # Identify user
     user_id = session["user_id"]
-    token = db.execute("SELECT hash FROM users WHERE id = ?", user_id)
     change = False
 
     nickname = request.form.get("nickname")
@@ -364,7 +362,7 @@ def profile():
 
         # Ensure user information is properly loaded on the page
         user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
-        return render_template("account.html", form=form, nickname=user_data['name'], title=user_data['title'], avatar_img=user_data['pic'])
+        return render_template("account.html", nickname=user_data['name'], title=user_data['title'], avatar_img=user_data['pic'])
 
 
 @app.route("/register", methods=["GET", "POST"])

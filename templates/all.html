@@ -8,8 +8,7 @@
         {% else %}
         <button class="accordion-button collapsed fs-5 quest qopen p-2" type="button" data-bs-toggle="collapse" data-bs-target='#ab{{ quest["id"] }}' aria-expanded="true" aria-controls='ab{{ quest["id"] }}'>
         {% endif %}
-        <img src="/static/questsample.jpg" style="max-height: 3rem;" class="imgborder"><text class="carving">&nbsp;{{ quest['title'] }}</text>
-
+        <img src="/static/questsample.jpg" style="max-height: 3rem;" class="imgborder"><h4 class="my-0 mx-3">{{ quest['title'] }}</h4>
         </button>
         </h2>
         {% include "quest.html" ignore missing %}

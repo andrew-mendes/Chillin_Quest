@@ -1,0 +1,7 @@
+cs50
+Flask
+flask_session
+werkzeug
+flask_wtf
+wtforms
+requests

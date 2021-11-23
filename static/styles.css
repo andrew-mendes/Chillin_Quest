@@ -133,18 +133,6 @@
     outline: 1px solid black;
 }
 
-.carving {
-    font: bold;
-    font-size: 125%;
-    background-color: DarkGoldenRod;
-     color: transparent;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
-  -webkit-background-clip: text;
-     -moz-background-clip: text;
-          background-clip: text;
-
-}
-
 /*Open quests gray bar*/
 .qopen {
     background-image: linear-gradient(to top left, gray 0%, #e2ebf0 100%);
