@@ -8,15 +8,17 @@
     margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
-    width: 120px;
-    height: 120px;
+    width: 7.5em;
+    height: 7.5em;
     object-fit: cover;
     outline: 1px solid black;
 }
 
 .icon {
-    width: 32px;
-    height: 32px;
+    border: none;
+    width: 2em;
+    height:2em;
+    object-fit: cover;
 }
 
 .imgborder {
@@ -101,10 +103,11 @@
 
 .darkborder {
     border: 5px solid;
+    min-width: 15rem;
+    max-width: 15rem;
     border-radius: 0;
     border-image: linear-gradient(to bottom, #121301 0%,#33261b 2%,#3f2f22 7%,#80674e 20%,#80674e 20%,#33271a 45%,#33271a 56%,#121301 71%,#2c211a 84%,#121301 100%) 10; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121301', endColorstr='#121301',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    /*width: 50%;*/
 }
 
 /*QUESTS*/
@@ -391,4 +394,24 @@ main
 #form-gen {
     margin-top: 15vh !important;
 }
+
+
+/* Dim the lights on delete account button hover */
+@media screen and (min-width: 768px) {
+    #hellodarkness {
+        background:rgba(0, 0, 0, 0.9);
+        display:none;
+        height:100%;
+        left:0;
+        position:absolute;
+        top:0;
+        width:100%;
+        z-index:5;
+    }
+  }
+
+#myoldfriend {
+    z-index:10;
+}
+
 

@@ -12,6 +12,7 @@ from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
+from wtforms.fields.simple import HiddenField
 
 from helpers import allowed_file, login_required, error
 
@@ -42,6 +43,11 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "secret"
 Session(app)
 
+# Declare WTForm Upload File Forms
+class UploadForm(FlaskForm):
+    file = FileField()
+    submit = SubmitField("Submit picture")
+
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/quests/<status>", methods=["GET", "POST"])
@@ -50,6 +56,8 @@ def index(status="all", searchterm=""):
 
     # Identify user
     user_id = session["user_id"]
+    # Define form
+    form = UploadForm()
 
     """Show Profile Card"""
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
@@ -71,6 +79,14 @@ def index(status="all", searchterm=""):
         description = request.form.get("quest-text")
         reward = request.form.get("quest-prize")
         done = False
+        icon = None
+
+        if form.validate_on_submit():
+            print(form.file.data)
+            if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
+
+                picture = form.file.data.read()
+                icon = base64.b64encode(picture).decode(encoding='utf-8')
 
         # Limit quest titles lenght
         if len(quest) > 25:
@@ -78,11 +94,11 @@ def index(status="all", searchterm=""):
 
         else:
             # Insert new quest into DB
-            db.execute("INSERT INTO quests (title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?)", quest, description, reward, user_id, done)
+            db.execute("INSERT INTO quests (icon, title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?, ?)", icon, quest, description, reward, user_id, done)
             return redirect("/")
 
     else:
-        return render_template("index.html", quests=quests, name=name, title=title, avatar_img=avatar_img, status=status, oquests=oquests, cquests=cquests, totalquests=totalquests)
+        return render_template("index.html", form=form, quests=quests, name=name, title=title, avatar_img=avatar_img, status=status, oquests=oquests, cquests=cquests, totalquests=totalquests)
 
 
 @app.route("/account", methods=["GET", "POST"])
@@ -184,20 +200,32 @@ def edit(quest_id=None):
     # Identify user
     user_id = session["user_id"]
 
+    # Define form
+    form = UploadForm()
+
     # Obtain user quest of choice
     if request.method == "GET":
-        questinfo = db.execute("SELECT id, title, description, reward FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]
+        questinfo = db.execute("SELECT id, icon, title, description, reward FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]
 
-        return render_template("editquest.html", questinfo=questinfo)
+        return render_template("editquest.html", form=form, questinfo=questinfo)
 
     # Update quest information
     elif request.method == "POST":
+        
+        icon = None
+
+        if form.validate_on_submit():
+            print(form.file.data)
+            if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
+
+                picture = form.file.data.read()
+                icon = base64.b64encode(picture).decode(encoding='utf-8')
 
         quest_title = request.form.get("quest-edit-name")
         quest_description = request.form.get("quest-edit-text")
         quest_reward = request.form.get("quest-edit-prize")
 
-        db.execute("UPDATE quests SET (title, description, reward) = (?, ?, ?) WHERE id = ? AND user_id = ?", quest_title, quest_description, quest_reward, quest_id, user_id)
+        db.execute("UPDATE quests SET (icon, title, description, reward) = (?, ?, ?, ?) WHERE id = ? AND user_id = ?", icon, quest_title, quest_description, quest_reward, quest_id, user_id)
 
         return redirect("/")
 
@@ -310,10 +338,6 @@ def picture():
     else:
         return redirect("/account")
 
-class UploadForm(FlaskForm):
-    file = FileField()
-    submit = SubmitField("Submit picture")
-
 
 @app.route("/profile", methods=["GET", "POST"])
 @login_required
@@ -402,7 +426,7 @@ def register():
 
         # Create first quest
         path = 'templates/firststeps.txt'
-        firstquest = open(path,'r')
+        firstquest = open(path,'r', encoding="utf-8")
         description = firstquest.read()
         quest = 'First steps: Hey, click here!'
         reward = 'Knowledge'
@@ -436,12 +460,18 @@ def search():
     # Identify user
     user_id = session["user_id"]
 
+    """Show Quest Totals"""
+    oquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id = ? AND done = ?", user_id, False)[0]['COUNT (id)']
+    cquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id= ? AND done = ?", user_id, True)[0]['COUNT (id)']
+    totalquests = cquests + oquests
+
     """Obtain profile card information"""
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
     name = user_data['name']
     title = user_data['title']
     avatar_img=user_data['pic']
+    form = UploadForm()
 
-    quests = db.execute("SELECT * FROM quests WHERE user_id = ? AND title LIKE (?) OR description LIKE (?)", user_id, "%" + request.args.get("q") + "%", "%" + request.args.get("q") + "%")
+    quests = db.execute("SELECT * FROM quests WHERE user_id = ? AND title LIKE (?) OR user_id = ? AND description LIKE (?)", user_id, "%" + request.args.get("q") + "%", user_id, "%" + request.args.get("q") + "%")
 
-    return render_template("index.html", quests=quests, name=name, title=title, avatar_img=avatar_img, status="all");
+    return render_template("index.html", form=form, quests=quests, name=name, title=title, avatar_img=avatar_img, status="all", cquests=cquests, oquests=oquests, totalquests=totalquests)

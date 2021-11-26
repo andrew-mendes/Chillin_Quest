@@ -43,7 +43,7 @@
         <div class="card h-100 tr-black">
             <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Profile Picture</h5></div>
             <div class="card-body paperbody">
-                <form action="{{ url_for('picture') }}" method="POST", enctype="multipart/form-data">
+                <form action="{{ url_for('picture') }}" method="POST" enctype="multipart/form-data">
                 <img class="avatar" src="data:image/png;base64,{{ avatar_img }}" alt="IMG">
                 <div class="card-body">
                     <div class="form-group">
@@ -79,7 +79,19 @@
         </div>
     </div>
 </div>
-<div class="d-flex justify-content-end p-3">
-    <button class="btn btn-black btn-outline merri" type="button" data-bs-toggle="modal" data-bs-target="#farewellModal">Delete Account</button>
+<div class="d-flex justify-content-center py-3 mx-auto">
+    <button id="myoldfriend" class="btn btn-black btn-outline merri" type="button" data-bs-toggle="modal" data-bs-target="#farewellModal">Bid Farewell</button>
 </div>
+<div id="hellodarkness"></div>
+<!-- Import JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('#myoldfriend').hover(function(){
+        $('#hellodarkness').fadeTo(200, 0.9);
+    }, function(){
+        $('#hellodarkness').fadeTo(400, 0, function(){
+            $(this).hide();
+        });
+    });
+</script>
 {% endblock main %}

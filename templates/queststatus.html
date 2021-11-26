@@ -1,0 +1,18 @@
+<div class="accordion accordion-flush mb-3" id="accordion_main">
+    <div class="accordion-item">
+        <h2 class="accordion-header m-0" id='ah{{ quest["id"] }}'>
+        {% if quest['done'] == true %}
+            <button class="accordion-button collapsed fs-5 quest qdone p-2" type="button" data-bs-toggle="collapse" data-bs-target='#ab{{ quest["id"] }}' aria-expanded="true" aria-controls='ab{{ quest["id"] }}'>
+        {% else %}
+            <button class="accordion-button collapsed fs-5 quest qopen p-2" type="button" data-bs-toggle="collapse" data-bs-target='#ab{{ quest["id"] }}' aria-expanded="true" aria-controls='ab{{ quest["id"] }}'>
+        {% endif %}
+        {% if quest['icon'] == None %}
+            <img class="icon" src="/static/questicon.jpg" alt="IMG"><h4 class="my-0 mx-3">{{ quest['title'] }}</h4>
+        {% else %}
+            <img class="icon" src="data:image/png;base64,{{ quest['icon'] }}" style="max-height: 3rem;" alt="IMG"><h4 class="my-0 mx-3">{{ quest['title'] }}</h4>                       
+        {% endif %}
+        </button>
+        </h2>
+        {% include "quest.html" ignore missing %}
+    </div>
+</div>

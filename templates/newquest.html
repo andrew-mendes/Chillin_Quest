@@ -1,22 +1,29 @@
 <div class="modal fade merri" id="newquestModal" tabindex="-1" aria-labelledby="New Quest Modal" aria-hidden="true">
-    <form class="modal-dialog modal-dialog-centered" action="/" method="POST" id="newquest-form" autocomplete="off">
+    <form class="modal-dialog modal-dialog-centered" action="/" method="POST" id="newquest-form" autocomplete="off" enctype="multipart/form-data">
         <div class="modal-content" style="background-color: rgba(0,0,0,0.50);">
-            <div class="d-flex modal-header justify-content-start darkbar" style="background-color: rgb(255, 255, 255);">
-                <img src="/static/sword.png" style="max-width: 50px;">
+            <div class="modal-header justify-content-start d-flex align-items-center darkbar p-2" style="background-color: rgb(255, 255, 255);">
+                <img class="icon mx-2" src="/static/questicon.jpg" alt="IMG">
                 <h5 class="modal-title text-white text-start blackshadow" id="newquestModalLabel">&nbsp;New Quest</h5>
             </div>
             <div class="modal-body paperbody" style="background-color: rgba(0,0,0,0.50);">
-            <!-- Quest Name -->
+            <!-- Icon -->
             <div class="form d-flex flex-column mb-3">
-              <label class="text-start text-black" for="quest-edit-name">Quest Name:</label>
+                <label class="text-start text-black" for="quest-edit-name">Icon:</label>
+                {{ form.hidden_tag() }}
+                <!-- Works on: IE 10+, Edge (EdgeHTML), Edge (Chromium), Chrome, Firefox 42+ -->
+                {{ form.file(class="btn btn-light btn-sm col-12 mb-3", accept=".jpg, .jpeg, .png") }}
+            </div>        
+            <!-- Name -->
+            <div class="form d-flex flex-column mb-3">
+              <label class="text-start text-black" for="quest-edit-name">Title:</label>
               <input type="text" class="form-control" name="quest-name" id="quest-name" required>
             </div>
-            <!-- Quest Description-->
+            <!-- Description-->
             <div class="form d-flex flex-column mb-3">
               <label class="text-start text-black" for="quest-edit-text">Description:</label>
               <textarea style="white-space: pre-wrap;" type="text" class="form-control" name="quest-text" id="quest-text" required></textarea>
             </div>
-            <!-- Quest Reward -->
+            <!-- Reward -->
             <div class="form d-flex flex-column mb-3">
                 <label class="text-start text-black" for="quest-edit-prize">Reward (Optional):</label>
                 <input type="text" class="form-control" name="quest-prize" id="quest-prize">
@@ -28,6 +35,7 @@
             <button type="button" class="btn btn-black btn-outline" data-bs-dismiss="modal">Nevermind</button>
             <!--Save Quest-->
             <button type="submit" class="btn btn-green btn-outline">Save it!</button>
+            <!-- {{ form.submit(class="btn btn-red btn-outline col") }} -->
         </div>
         </div>
     </form>
