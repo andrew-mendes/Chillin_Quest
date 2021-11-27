@@ -8,6 +8,8 @@ Video Demo: <URL HERE>
 
 ​	Chillin' Quest is a web application that allows you take real life objectives as RPG based quests, customize them and even apply rewards to yourself if you want. Its intention is to bring to your life the flavor of being an adventurer and reminds you of your own accomplishments, often easy to forget in face of everyday hardships.
 
+​	Do your own life quests, at your own pace and be chill about it.
+
 ## Table of  Contents
 
 <!--ts-->
@@ -49,7 +51,7 @@ Video Demo: <URL HERE>
 
 - Friendly interface to add and manage your quests (such adventurous).
 - Customizable rewards (you should celebrate your wins!).
-- Icons gallery (because it's cool).
+- Upload icons to your quests (because it's cool).
 - Customizable character (yourself or whoever you want to be)
 
 ## Objective
@@ -58,7 +60,9 @@ Video Demo: <URL HERE>
 
 ## Used  Technologies
 
-​	Chillin' Quest was built as a Python application taking advantage of Pallets Project's Flask, JavaScript to generate HTML templates for its pages and their elements. Most of the CSS used was built over customized Bootstrap elements.
+​	Chillin' Quest was built as a Python application taking advantage of Pallets Project's Flask, JavaScript to generate HTML templates for its pages and their elements.
+
+​	Most of the CSS used was built over customized Bootstrap elements. There's a bit of JQuery too.
 
 ​	It also uses the own course's SQL module just for convenience.
 
@@ -70,15 +74,11 @@ Video Demo: <URL HERE>
 
 Removed features:
 
-TODO --- Some additional customization to icons, from images chosen from the users' computer, removed to prevent too much occupied space in the db.
-
 - Ideally these would be stored locally and have cloud save and synchronization options.
-
-  
 
 - A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after you complete "Learn to play the guitar").
 
-  This would probably be a very cool feature and it hurt me to remove it, but the complexity involved in the current scope of the project was out of reach for me at the time. 
+  This would probably be a very cool feature but the complexity involved in the current scope of the project was out of reach for me at the time. 
 
   
 
@@ -128,9 +128,11 @@ TODO --- Some additional customization to icons, from images chosen from the use
 
 ## Usage
 
-TODO
-
 ### 	Starting Screen
+
+At the starting screen TODO
+
+<img src="C:\Users\Andru\Desktop\chillinquest\chillinquest\assets\starting.jpg" alt="starting" style="zoom: 33%;" /> 
 
 ### 	Register
 

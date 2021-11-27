@@ -83,6 +83,20 @@
     background: linear-gradient(180deg, rgba(54,53,53,1) 0%, rgba(158,158,158,1) 19%, rgba(63,64,63,1) 41%, rgba(63,64,63,1) 78%, rgba(43,43,43,1) 84%, rgba(19,19,19,1) 93%);
 }
 
+.btn-farewell {
+    color: white;
+    border: 3px solid #131313;
+    box-shadow: -5px 0 5px 1px #131313 inset, 5px 0 5px 1px #131313 inset;
+    background: linear-gradient(180deg, rgba(54,53,53,1) 0%, rgba(158,158,158,1) 19%, rgba(63,64,63,1) 41%, rgba(63,64,63,1) 78%, rgba(43,43,43,1) 84%, rgba(19,19,19,1) 93%);
+}
+
+.btn-farewell:hover{
+    color: black;
+    border: 3px solid #131313;
+    box-shadow: -5px 0 5px 1px #131313 inset, 5px 0 5px 1px #131313 inset, 0 0 15px rgb(210, 160, 243);
+    background: linear-gradient(180deg, rgba(135,135,135,1) 0%, rgba(224,224,224,1) 22%, rgba(155,156,155,1) 68%, rgba(140,140,140,1) 80%, rgba(80,80,80,1) 93%);}
+
+
 /*BROWN BARS*/
 .darkbar {
     box-shadow: -5px 0 5px 1px rgba(28,19,12,1) inset, 5px 0 5px 1px rgba(28,19,12,1) inset;
@@ -103,8 +117,8 @@
 
 .darkborder {
     border: 5px solid;
-    min-width: 15rem;
-    max-width: 15rem;
+    min-width: 20rem;
+    max-width: 20rem;
     border-radius: 0;
     border-image: linear-gradient(to bottom, #121301 0%,#33261b 2%,#3f2f22 7%,#80674e 20%,#80674e 20%,#33271a 45%,#33271a 56%,#121301 71%,#2c211a 84%,#121301 100%) 10; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121301', endColorstr='#121301',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
@@ -364,11 +378,28 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-color: #0e1907;
+    overflow-y:auto;
 }
 
 /*This keeps login forms in the middle of the screen*/
 .p25vh {
     padding-top: 25vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: rgb(199, 161, 125);
+    border-radius: 100px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: rgb(63, 45, 31);
+    border-radius: 100px;
 }
 
 /* Hides ugly standard upload button :) */
@@ -380,6 +411,7 @@ main
 {
     /* Scroll horizontally as needed */
     overflow-x: auto;
+    overflow-y: auto;
 
     /* Center contents */
     text-align: center;
