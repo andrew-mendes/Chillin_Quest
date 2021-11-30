@@ -93,7 +93,7 @@ requests
 
 At the main screen the user has the option to register a new account or log in if they already have one.
 
-<img src="C:\Users\Andru\Desktop\chillinquest\chillinquest\README.assets\startandregister.jpg" alt="starting" style="zoom: 100%;" />
+<img src="README.assets\startandregister.jpg" alt="starting" style="zoom: 100%;" />
 
 ### Home
 
@@ -114,14 +114,14 @@ Quests clicked expand a box with its description, reward, as well as completion,
 
 Once marked as completed, the title bar turns gold and completion date and time will be shown.
 
-<img src="C:\Users\Andru\Desktop\chillinquest\chillinquest\README.assets\home.jpg" alt="starting" style="zoom: 100%;"/>
+<img src="README.assets\home.jpg" alt="starting" style="zoom: 100%;"/>
 
 ### Profile & Account
 On this page the user can change their picture, profile information and password, all separately.
 
 A "Bid Farewell" button at the bottom will give the option to delete their account along with all the user's quests and information.
 
-<img src="C:\Users\Andru\Desktop\chillinquest\chillinquest\README.assets\account.jpg" alt="starting" style="zoom: 100%;"/>
+<img src="\README.assets\account.jpg" alt="starting" style="zoom: 100%;"/>
 
 #### About deletion:
 Irreversible changes such as deletion of quests and the user's account will pop up a message requesting the user to confirm their decision.
