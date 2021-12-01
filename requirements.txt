@@ -5,3 +5,4 @@ werkzeug
 flask_wtf
 wtforms
 requests
+python-dotenv

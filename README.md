@@ -11,21 +11,20 @@ Video Demo: <URL HERE>
 
   A web application that allows users to create, manage and customize their real life objectives as RPG-like quests.
 
-## Table of  Contents
+## Table of Contents
 
 <!--ts-->
   - [Objective](#objective)
   - [Project Status](#project-status)
   - [Features](#features)
   - [Tech Stack](#tech-stack)
+  - [Requirements](#requirements)
   - [Installation](#installation)
-  - [Setup](#setup)
-    - [Requirements](#requirements)
-  - [Backend](#backend)
+  - [Project files](#project-files)
     - [application.py](#application)
-    - [helpers.py](#helpers.py)
-    - [chillinquest.db](#chillinquest.db)
-  - [Frontend](#frontend)
+    - [helpers.py](#helpers)
+    - [chillinquest.db](#chillinquest)
+  - [UI](#ui)
     - [Starting and Register Screens](#starting-and-register-screens)
     - [Home](#home)
     - [Profile & Account](#profile-account)
@@ -68,11 +67,11 @@ As a final project commitment for the course it is completed. However I do inten
 
 [return to top](#table-of-contents) :arrow_up_small:
 
-## Setup
-
 ### Requirements
 
-All included in */templates/requirements.txt*:
+- Python 3.1+
+
+All below modules included in */templates/requirements.txt* for quick installation:
   - cs50
   - Flask
   - flask_session
@@ -80,14 +79,15 @@ All included in */templates/requirements.txt*:
   - flask_wtf
   - wtforms
   - requests
+  - python-dotenv*
+  
+  *This will export the environment variables in the *.flaskenv* file, deploying the server in development mode, which is not suitable for production.
 
 [return to top](#table-of-contents) :arrow_up_small:
 
 ## Installation
 
-**To run locally:**
-
-**On Windows**
+**To run local on Windows:**
 1. From command prompt, once in the /chillinquest folder run:<br>
     In order to create the virtual environment:
     `py -3 -m venv venv` <br>
@@ -97,10 +97,6 @@ All included in */templates/requirements.txt*:
     `pip install -r requirements.txt`
     <br>
 2. Run the following Flask commands in order to start the server:<br>
-    To set a development server:
-    `$env:FLASK_ENV="development"`<br>
-    Export the python application
-    `$ export FLASK_APP="application.py"`<br>
     Run the application
     `$ flask run`<br>
       Open the local link:
@@ -108,17 +104,20 @@ All included in */templates/requirements.txt*:
 
 [return to top](#table-of-contents) :arrow_up_small:
 
-## Backend
+## Project Files
 
-#### application.py
-The main application file. Handles module imports, flask server and datababase deployment as well as redirects to all the webpages and loading of resources.
+#### application
+application.&#8203;py - The main application file. Handles module imports, flask server and database deployment as well as redirects to all the webpages and loading of resources.
 
-#### helpers.<area>py
-Additional support file containing 3 additional functions required for the application to run.
+#### helpers
+hellpers.&#8203;py - Additional support file containing 3 additional functions required for the application to run.
 
-#### chillinquest.<area>db
-The database, containing two tables:
+#### chillinquest
+chillinquest.&#8203;db - The database, containing two tables:
 Users and Quests, where all of the user's information are stored.
+
+#### .flaskenv
+Configuration file containing the above mentioned environment variables required to run the flask application, set to development as default. Should be modified before usage if launching for production.
 
 [return to top](#table-of-contents) :arrow_up_small:
 
@@ -129,12 +128,12 @@ Users and Quests, where all of the user's information are stored.
 - **deletequest.html** - Renders delete quest confirmation popup.
 - **done.html** - Renders done quests in the homepage filter.
 - **editquest.html** - Renders edit quest page.
-- **error.html** - Renders comic error messages
+- **error.html** - Renders comic error messages.
 - **farewell.html** - Renders account deletion confirmation popup.
 - **firststeps.txt** - Contains tutorial first quest text.
-- **index.html** - Renders homepage
+- **index.html** - Renders homepage.
 - **layout.html** - Main structure of the whole web interface. All other templates are attached to this via flask and jinja syntax.
-- **login.html** - Renders login page
+- **login.html** - Renders login page.
 - **newquest.html** - Renders new quest UI element.
 - **open.html** - Renders open quests in the homepage filter.
 - **quest.html** - Renders quests bodies in the homepage. Attached to *queststatus.html*.
@@ -144,12 +143,12 @@ Users and Quests, where all of the user's information are stored.
 #### /static
 ##### Folder containning the following files:
 
-- **styles.css** - Contains all UI elements' styles
+- **styles.css** - Contains all UI elements' styles.
 - **multiple images for all the UI** - Logo, icons, default avatar and background.
 
 [return to top](#table-of-contents) :arrow_up_small:
 
-## Frontend
+## UI
 
 #### Starting and Register Screens
 
@@ -208,10 +207,17 @@ Irreversible changes such as deletion of quests and the user's account will pop 
 
 [return to top](#table-of-contents) :arrow_up_small:
 
+## Tests and compatibility
+
+TODO
+
 ## Acknowledgements
+
+TODO
 
 ## About the Author
 
+TODO
 
 [return to top](#table-of-contents) :arrow_up_small: 
 
