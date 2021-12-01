@@ -132,7 +132,7 @@ Irreversible changes such as deletion of quests and the user's account will pop 
 
 **Removed features:**
 
-  Ideally users quests information would be stored locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
+  At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
 
   A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but the complexity involved in the current scope of the project was out of reach for me at the time.
 
