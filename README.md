@@ -17,11 +17,15 @@ Video Demo: <URL HERE>
   - [Objective](#objective)
   - [Project Status](#project-status)
   - [Features](#features)
-  - [Used  Technologies](#used-technologies)
+  - [Tech Stack](#tech-stack)
   - [Installation](#installation)
   - [Setup](#setup)
     - [Requirements](#requirements)
-  - [Usage](#usage)
+  - [Backend](#backend)
+    - [application.py](#application)
+    - [helpers.py](#helpers.py)
+    - [chillinquest.db](#chillinquest.db)
+  - [Frontend](#frontend)
     - [Starting and Register Screens](#starting-and-register-screens)
     - [Home](#home)
     - [Profile & Account](#profile-account)
@@ -33,11 +37,15 @@ Video Demo: <URL HERE>
 
 ## Objective
 
-​It was built as a Final Project for my commitment to ***Harvard's CS50x - Introduction to Computer Science - 2021***  (<https://cs50.harvard.edu/x/>)
+​Built as a Final Project for my commitment to ***Harvard's CS50x - Introduction to Computer Science - 2021***  (<https://cs50.harvard.edu/x/>).
+
+[return to top](#table-of-contents) :arrow_up_small:
 
 ## Project Status
 
 As a final project commitment for the course it is completed. However I do intend to develop a new possible mobile version of it in the future with some other features and ideas that were cutout from this version.
+
+[return to top](#table-of-contents) :arrow_up_small:
 
 ## Features
 
@@ -45,49 +53,103 @@ As a final project commitment for the course it is completed. However I do inten
 - Responsive to screen size and different types of actions, such as mouseover, selection, etc.
 - Customizable character (as any RPG must be).
 
-## Used  Technologies
+[return to top](#table-of-contents) :arrow_up_small:
 
-​ Chillin' Quest was built as a Python application taking advantage of Pallets Project's Flask, JavaScript to generate HTML templates for its pages and their elements.
+## Tech Stack
 
-​ Most of the CSS used was created over customized Bootstrap elements. There's a bit of JQuery too.
+- [Python](https://python.org)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+- [WTForms](https://wtforms.readthedocs.io/en/3.0.x/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [JQuery](https://jquery.com)
+- [Bootstrap](https://getbootstrap.com)
+- [SQLite](https://www.sqlite.org/index.html) - through CS50's [python module](https://cs50.readthedocs.io/libraries/cs50/python/)
 
-​ It also uses the own course's SQL module just for convenience.
-
-​ Pallets Projects' Werkzeug modules provide additional safety to password storage and WTForms were also used in some small portion to enable inputs according to the website's style.
-
-## Installation
-
-​  TODO
+[return to top](#table-of-contents) :arrow_up_small:
 
 ## Setup
 
 ### Requirements
 
-cs50
-Flask
-flask_session
-werkzeug
-flask_wtf
-wtforms
-requests
+All included in */templates/requirements.txt*:
+  - cs50
+  - Flask
+  - flask_session
+  - werkzeug
+  - flask_wtf
+  - wtforms
+  - requests
 
-  **To run locally:**
+[return to top](#table-of-contents) :arrow_up_small:
 
-  Inside a Python environment:
+## Installation
 
-  1. From the terminal, once in the same folder path of the file `...\chillinquest\`  you can install all of them at once running the following command in the terminal:
+**To run locally:**
 
-     `pip install -r requirements.txt`
-<br>
-  2. Run the Flask commands in order to start the server:
-
-     `$ export FLASK_APP="application.py"`
-
-     `$ flask run`
-
+**On Windows**
+1. From command prompt, once in the /chillinquest folder run:<br>
+    In order to create the virtual environment:
+    `py -3 -m venv venv` <br>
+    To activate the virtual environment:
+    `& ./venv/Scripts/Activate.bat` <br>
+    To install all requirements at once:
+    `pip install -r requirements.txt`
+    <br>
+2. Run the following Flask commands in order to start the server:<br>
+    To set a development server:
+    `$env:FLASK_ENV="development"`<br>
+    Export the python application
+    `$ export FLASK_APP="application.py"`<br>
+    Run the application
+    `$ flask run`<br>
+      Open the local link:
      ​ `* Running on http://127.0.0.1:5000/`
 
-## Usage
+[return to top](#table-of-contents) :arrow_up_small:
+
+## Backend
+
+#### application.py
+The main application file. Handles module imports, flask server and datababase deployment as well as redirects to all the webpages and loading of resources.
+
+#### helpers.<area>py
+Additional support file containing 3 additional functions required for the application to run.
+
+#### chillinquest.<area>db
+The database, containing two tables:
+Users and Quests, where all of the user's information are stored.
+
+[return to top](#table-of-contents) :arrow_up_small:
+
+#### **/templates**
+##### Folder containning the following html and txt templates:
+- **account.html** - User Profile & Account management.
+- **all.html** - Renders all quests list in the homepage.
+- **deletequest.html** - Renders delete quest confirmation popup.
+- **done.html** - Renders done quests in the homepage filter.
+- **editquest.html** - Renders edit quest page.
+- **error.html** - Renders comic error messages
+- **farewell.html** - Renders account deletion confirmation popup.
+- **firststeps.txt** - Contains tutorial first quest text.
+- **index.html** - Renders homepage
+- **layout.html** - Main structure of the whole web interface. All other templates are attached to this via flask and jinja syntax.
+- **login.html** - Renders login page
+- **newquest.html** - Renders new quest UI element.
+- **open.html** - Renders open quests in the homepage filter.
+- **quest.html** - Renders quests bodies in the homepage. Attached to *queststatus.html*.
+- **queststatus.html** - Renders different style button and header for quests depending on completion status. Attached to *all.html*, *done.html* and *open.html*.
+- **register.html** - Renders registration page.
+
+#### /static
+##### Folder containning the following files:
+
+- **styles.css** - Contains all UI elements' styles
+- **multiple images for all the UI** - Logo, icons, default avatar and background.
+
+[return to top](#table-of-contents) :arrow_up_small:
+
+## Frontend
 
 #### Starting and Register Screens
 
@@ -95,7 +157,9 @@ At the main screen the user has the option to register a new account or log in i
 
 <img src="README.assets\startandregister.jpg" alt="starting" style="zoom: 100%;" />
 
-### Home
+[return to top](#table-of-contents) :arrow_up_small:
+
+#### Home
 
 **User card**
 A user card with a default picture, name and title will be shown on the left. All of these can be changed at the Profile & Account page, accessible at the top right of the screen.
@@ -116,7 +180,9 @@ Once marked as completed, the title bar turns gold and completion date and time 
 
 <img src="README.assets\home.jpg" alt="home" style="zoom: 100%;"/>
 
-### Profile & Account
+[return to top](#table-of-contents) :arrow_up_small:
+
+#### Profile & Account
 On this page the user can change their picture, profile information and password, all separately.
 
 A "Bid Farewell" button at the bottom will give the option to delete their account along with all the user's quests and information.
@@ -126,13 +192,27 @@ A "Bid Farewell" button at the bottom will give the option to delete their accou
 #### About deletion:
 Irreversible changes such as deletion of quests and the user's account will pop up a message requesting the user to confirm their decision.
 
+[return to top](#table-of-contents) :arrow_up_small:
+
 ## Development Changes
 
 ​ During development, as predicted I had to face some difficulties that made me cutout some of its features with the aim of delivering a solid final product even without them.
+
+[return to top](#table-of-contents) :arrow_up_small:
 
 **Removed features:**
 
   At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
 
   A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but the complexity involved in the current scope of the project was out of reach for me at the time.
+
+[return to top](#table-of-contents) :arrow_up_small:
+
+## Acknowledgements
+
+## About the Author
+
+
+[return to top](#table-of-contents) :arrow_up_small: 
+
 

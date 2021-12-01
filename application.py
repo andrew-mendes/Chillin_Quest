@@ -1,19 +1,26 @@
+## Module Imports ##
+# Python Native
 import re, string, base64, datetime
 
+# CS50's SQL
 from cs50 import SQL
 
+# Flask
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
 
+# Werkzeug security utilities
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 
+# Flask WTForms
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 from wtforms.fields.simple import HiddenField
 
+# Helpers functions
 from helpers import allowed_file, login_required, error
 
 
@@ -39,7 +46,9 @@ def after_request(response):
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+
 # Configures secret key
+# IMPORTANT: MAKE SURE TO ENABLE A UNIQUE SECRET KEY BEFORE DEPLOYING FOR PRODUCTION
 app.config["SECRET_KEY"] = "secret"
 Session(app)
 
@@ -49,6 +58,7 @@ class UploadForm(FlaskForm):
     submit = SubmitField("Submit picture")
 
 
+# Homepage
 @app.route("/", methods=["GET", "POST"])
 @app.route("/quests/<status>", methods=["GET", "POST"])
 @login_required
@@ -59,18 +69,18 @@ def index(status="all", searchterm=""):
     # Define form
     form = UploadForm()
 
-    """Show Profile Card"""
+    # Show Profile Card
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
     name = user_data['name']
     title = user_data['title']
     avatar_img=user_data['pic']
 
-    """Show Quest Totals"""
+    # Show Quest Totals
     oquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id = ? AND done = ?", user_id, False)[0]['COUNT (id)']
     cquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id= ? AND done = ?", user_id, True)[0]['COUNT (id)']
     totalquests = cquests + oquests
 
-    """Show list of quests"""
+    # Show list of quests
     quests = db.execute("SELECT * FROM quests WHERE user_id = ?", user_id)
 
     # Obtain user's new quest inputs
@@ -81,10 +91,11 @@ def index(status="all", searchterm=""):
         done = False
         icon = None
 
+        # Verify quest icon file input
         if form.validate_on_submit():
-            print(form.file.data)
-            if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
 
+            if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
+                # Read picture file into memory and decode to base64
                 picture = form.file.data.read()
                 icon = base64.b64encode(picture).decode(encoding='utf-8')
 
@@ -92,24 +103,26 @@ def index(status="all", searchterm=""):
         if len(quest) > 25:
             return error("That's too long for a name.\nIt will not fit. Sorry friend.\nMax 25 characters")
 
+        # In case no icon input was made
         else:
             # Insert new quest into DB
             db.execute("INSERT INTO quests (icon, title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?, ?)", icon, quest, description, reward, user_id, done)
             return redirect("/")
 
+    # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("index.html", form=form, quests=quests, name=name, title=title, avatar_img=avatar_img, status=status, oquests=oquests, cquests=cquests, totalquests=totalquests)
 
 
+# Profile & Account management page
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def password_change():
-    """Changes user's password"""
+    """Changes user's password, picture, name and title, and deletes account"""
 
     # Identify user
     user_id = session["user_id"]
     token = db.execute("SELECT hash FROM users WHERE id = ?", user_id)
-    change = False
     form = UploadForm()
 
     # Handles password change forms submission
@@ -149,10 +162,10 @@ def password_change():
         return render_template("account.html", form=form, nickname=user_data['name'], title=user_data['title'], avatar_img=user_data['pic'])
 
 
+# Toggle user's quests done status
 @app.route("/done/<quest_id>", methods=["POST"])
 @login_required
 def done(quest_id=None):
-    """Toggle user's quests done status"""
 
     # Identify user
     user_id = session["user_id"]
@@ -161,52 +174,56 @@ def done(quest_id=None):
     if request.method == "POST":
         quest_done = db.execute("SELECT done FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]["done"]
 
+        # Undo 'quest done' status
         if quest_done == True:
             db.execute("UPDATE quests SET (done, timestamp) = (?, ?) WHERE id = ? AND user_id = ?", False, None, quest_id, user_id)
 
+        # Toggle 'quest done' status and sets the time of completion
         else:
             db.execute("UPDATE quests SET (done, timestamp) = (?, ?) WHERE id = ? AND user_id = ?", True, datetime.datetime.now(), quest_id, user_id)
 
+        # Return to homepage
         return redirect("/")
 
     else:
-        return error("Something wrong is not right, traveller.\nWhat've you been meddling with?")
+        return redirect('/')
 
 
+# Delete quest
 @app.route("/delete/<quest_id>", methods=["GET", "POST"])
 @login_required
 def delete(quest_id=None):
-    """Delete user's quests"""
 
     # Identify user
     user_id = session["user_id"]
 
-    # Obtain user quest of choice
+    # Obtain user quest of choice and delete it
     if request.method == "POST":
 
         db.execute("DELETE FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)
 
+        # Return to homepage
         return redirect('/')
 
     else:
         return redirect('/')
 
-
+# Edit user's quests
 @app.route("/editquest/<quest_id>", methods=["POST","GET"])
 @login_required
 def edit(quest_id=None):
-    """Edit user's quests"""
-
+    
     # Identify user
     user_id = session["user_id"]
 
     # Define form
     form = UploadForm()
 
-    # Obtain user quest of choice
+    # Obtain user quest of choice informtation
     if request.method == "GET":
         questinfo = db.execute("SELECT id, icon, title, description, reward FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]
 
+        # Load edit quest interface
         return render_template("editquest.html", form=form, questinfo=questinfo)
 
     # Update quest information
@@ -214,10 +231,11 @@ def edit(quest_id=None):
         
         icon = None
 
+        # Verify quest icon file input
         if form.validate_on_submit():
-            print(form.file.data)
+            
             if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
-
+                # Read picture file into memory and decode to base64
                 picture = form.file.data.read()
                 icon = base64.b64encode(picture).decode(encoding='utf-8')
 
@@ -229,17 +247,18 @@ def edit(quest_id=None):
 
         return redirect("/")
 
-
+# Delete account and user information
 @app.route("/farewell", methods=["POST"])
 @login_required
 def farewell():
-    """Delete account and all user information"""
 
+    # Prepare confirmation of change
     change = True
 
     # Identify user
     user_id = session["user_id"]
 
+    # Require additional confirmation for safety
     confirmation = request.form.get("deleteconfirm")
 
     if confirmation == "DELETE":
@@ -251,16 +270,16 @@ def farewell():
         # Forget any user_id
         session.clear()
 
+        # Return to login page
         return render_template("login.html", change=change)
 
+    # In case the delete confirmation has not been submitted correctly
     else:
-
         return error("You didn't really say DELETE.\nCan't do, friend.")
 
-
+# Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
 
     # Forget any user_id
     session.clear()
@@ -294,9 +313,9 @@ def login():
         return render_template("login.html")
 
 
+# Logout
 @app.route("/logout")
 def logout():
-    """Log user out"""
 
     # Forget any user_id
     session.clear()
@@ -304,10 +323,11 @@ def logout():
     # Redirect user to login form
     return render_template("login.html")
 
+
+# Upload user profile picture
 @app.route("/picture", methods=["POST"])
 @login_required
 def picture():
-    """Upload user profile picture"""
 
     # Identify user
     user_id = session["user_id"]
@@ -316,13 +336,15 @@ def picture():
 
     if request.method == "POST":
 
+        # Verify profile picture input
         if form.validate_on_submit():
 
             if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
-
+                # Read picture file into memory and decode to base64
                 picture = form.file.data.read()
                 avatar_img = base64.b64encode(picture).decode(encoding='utf-8')
 
+                # Prepare confirmation of change
                 change = True
 
                 db.execute("UPDATE users SET pic = ? WHERE id = ?", avatar_img, user_id)
@@ -331,9 +353,9 @@ def picture():
                 user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
                 return render_template("account.html", form=form, change=change, nickname=user_data['name'], title=user_data['title'], avatar_img=user_data['pic'])
 
+            # Handle wrong file type submission
             else:
-
-                return error("Is that a picture?\nCan't see ya!")
+                return error("Is that a picture?\nCan't see ya!\n(Only jpg, jpeg or png accepted)")
 
     else:
         return redirect("/account")
@@ -346,7 +368,6 @@ def profile():
 
     # Identify user
     user_id = session["user_id"]
-    change = False
 
     nickname = request.form.get("nickname")
     usertitle = request.form.get("usertitle")
@@ -389,9 +410,9 @@ def profile():
         return render_template("account.html", nickname=user_data['name'], title=user_data['title'], avatar_img=user_data['pic'])
 
 
+# Register new user
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
 
     # Obtain forms input
     if (request.method == "POST"):
@@ -452,20 +473,20 @@ def register():
         return render_template("register.html")
 
 
+# Run and render quest searches on homepage
 @app.route("/search", methods=["GET"])
 @login_required
 def search():
-    """Run and render quest searches on homepage"""
-
+    
     # Identify user
     user_id = session["user_id"]
 
-    """Show Quest Totals"""
+    # Show Quest Totals
     oquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id = ? AND done = ?", user_id, False)[0]['COUNT (id)']
     cquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id= ? AND done = ?", user_id, True)[0]['COUNT (id)']
     totalquests = cquests + oquests
 
-    """Obtain profile card information"""
+    # Obtain profile card information
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
     name = user_data['name']
     title = user_data['title']
@@ -474,4 +495,5 @@ def search():
 
     quests = db.execute("SELECT * FROM quests WHERE user_id = ? AND title LIKE (?) OR user_id = ? AND description LIKE (?)", user_id, "%" + request.args.get("q") + "%", user_id, "%" + request.args.get("q") + "%")
 
+    # Return to index rendering list of quests that match search
     return render_template("index.html", form=form, quests=quests, name=name, title=title, avatar_img=avatar_img, status="all", cquests=cquests, oquests=oquests, totalquests=totalquests)

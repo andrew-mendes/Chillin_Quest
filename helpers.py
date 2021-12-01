@@ -1,13 +1,10 @@
-import os
-import requests
-import urllib.parse
-
-from flask import redirect, render_template, request, session
+# Load modules
+# Flask
+from flask import redirect, render_template, session
+# Python
 from functools import wraps
 
-from werkzeug.utils import secure_filename
-
-
+# Establish allowed image input formats
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
