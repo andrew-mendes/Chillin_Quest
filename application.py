@@ -18,7 +18,6 @@ from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
-from wtforms.fields.simple import HiddenField
 
 # Helpers functions
 from helpers import allowed_file, login_required, error

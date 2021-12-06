@@ -116,9 +116,10 @@
 }
 
 .darkborder {
+    display:block;
     border: 5px solid;
     min-width: 20rem;
-    max-width: 20rem;
+    max-width:fit-content;
     border-radius: 0;
     border-image: linear-gradient(to bottom, #121301 0%,#33261b 2%,#3f2f22 7%,#80674e 20%,#80674e 20%,#33271a 45%,#33271a 56%,#121301 71%,#2c211a 84%,#121301 100%) 10; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121301', endColorstr='#121301',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
@@ -213,8 +214,13 @@ textarea:focus {
   }
 
 /* Form changes */
-main .form-control
-{
+.wauto {
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+
+.form-wauto {
     /* Center form controls */
     display: inline-block;
 

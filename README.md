@@ -109,34 +109,43 @@ All below modules included in */templates/requirements.txt* for quick installati
 #### application
 application.&#8203;py - The main application file. Handles module imports, flask server and database deployment as well as redirects to all the webpages and loading of resources.
 
+Important: A unique Secret Key should be provided on line 50 before deploying the server for production. This guarantees the user sessions safety:
+
+`app.config["SECRET_KEY"] = "secret"`
+
+
 #### helpers
-hellpers.&#8203;py - Additional support file containing 3 additional functions required for the application to run.
+helpers.&#8203;py - Support file containing 3 additional functions required for the application to run.
 
 #### chillinquest
 chillinquest.&#8203;db - The database, containing two tables:
-Users and Quests, where all of the user's information are stored.
+
+ - Users: Where name, ID and title are stored.
+ - Quests: Linked through foreign ID to users, where quests and their data are stored.
 
 #### .flaskenv
-Configuration file containing the above mentioned environment variables required to run the flask application, set to development as default. Should be modified before usage if launching for production.
+Configuration file containing the forementioned environment variables required to run the flask application, set to development as default.
+
+NOTE: Should be modified before usage if launching for production.
 
 [return to top](#table-of-contents) :arrow_up_small:
 
 #### **/templates**
 ##### Folder containning the following html and txt templates:
 - **account.html** - User Profile & Account management.
-- **all.html** - Renders all quests list in the homepage.
+- **all.html** - Renders all quests list in the homepage right column.
 - **deletequest.html** - Renders delete quest confirmation popup.
-- **done.html** - Renders done quests in the homepage filter.
+- **done.html** - Renders completed quests in the right column homepage filter.
 - **editquest.html** - Renders edit quest page.
-- **error.html** - Renders comic error messages.
+- **error.html** - Renders comic error messages (and maybe easter eggs).
 - **farewell.html** - Renders account deletion confirmation popup.
-- **firststeps.txt** - Contains tutorial first quest text.
-- **index.html** - Renders homepage.
+- **firststeps.txt** - Contains the text for first quest tutorial.
+- **index.html** - Renders the homepage.
 - **layout.html** - Main structure of the whole web interface. All other templates are attached to this via flask and jinja syntax.
-- **login.html** - Renders login page.
+- **login.html** - Renders the login page.
 - **newquest.html** - Renders new quest UI element.
-- **open.html** - Renders open quests in the homepage filter.
-- **quest.html** - Renders quests bodies in the homepage. Attached to *queststatus.html*.
+- **open.html** - Renders open quests in the right column homepage filter.
+- **quest.html** - Renders quests bodies in the homepage right column. Attached to *queststatus.html*.
 - **queststatus.html** - Renders different style button and header for quests depending on completion status. Attached to *all.html*, *done.html* and *open.html*.
 - **register.html** - Renders registration page.
 
@@ -209,15 +218,24 @@ Irreversible changes such as deletion of quests and the user's account will pop 
 
 ## Tests and compatibility
 
-TODO
+All tests were run in a Windows Desktop environment.
+
+Most of the funcionalities of the interface still apply on almost all mobile devices, exceptions detected for foldable ones and iPad (non-pro version).
 
 ## Acknowledgements
 
-TODO
+I wouldn't be able to reach the end of this project without the support of my dear friends.
+
+I would also like to congratulate and give my sincere thanks Professor David J. Malan, Bryan Yu, Doug Lloyd and all the CS50 staff for such an inspiring and dedicated course. 
 
 ## About the Author
 
-TODO
+ <img style="border-radius: 50%;" src="README.assets/andrew.jpg" width="100px;" alt=""/>
+
+ <b>Andrew Mendes</b>
+ Macaé, RJ - Brazil
+
+[![Github Badge](https://img.shields.io/badge/-andrewmendes-black?style=flat-square&logo=Github&logoColor=white&link=https://github.com/andrew-mendes)](https://github.com/andrew-mendes) [![Linkedin Badge](https://img.shields.io/badge/-AndrewMendes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-mendes-73805720b/)](https://www.linkedin.com/in/andrew-mendes-73805720b/) [![Gmail Badge](https://img.shields.io/badge/-andrewmendes@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andrewmendes@gmail.com)](mailto:tgmarinho@gmail.com)
 
 [return to top](#table-of-contents) :arrow_up_small: 
 
