@@ -20,6 +20,7 @@
         <div class="d-md-block d-flex justify-content-center px-md-5 mb-3 mx-100">
             <div class="card px-4 darkbottom darkborder text-center text-white blackshadow merri no-wrap" style="line-height:2;">
                 <span>&nbsp;Open Quests:&nbsp;<b class="text-pale bigger">{{ oquests }}</b></span>
+                <br>
                 <span>&nbsp;Completed Quests: &nbsp;<b class="text-warning bigger">{{ cquests }}</b></span>
                 <hr class="m-0">
                 <span class="glow">&nbsp;Total Quests: &nbsp;<b class="bigger">{{ totalquests }}</b></span>
@@ -30,7 +31,8 @@
     <!--New Quest Modal-->
     {% include "newquest.html" ignore missing %}
     <div class="col pb-3 pe-md-5 ps-md-0 px-2">
-        <!--Quests Navbar-->
+    <!-- <div class="col px-md-5 px-2"> -->
+    <!--Quests Navbar-->
         <nav class="d-flex navbar navbar-expand-sm darkbar navbar-dark merri mb-3 p-0">
             <div class="container-fluid">
                 <!--Open Modal for New Quest-->

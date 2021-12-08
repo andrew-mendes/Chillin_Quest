@@ -16,8 +16,8 @@
     {% endif %}
 <div class="d-flex align-self-center row row-cols-1 row-cols-md-3 px-5 g-5 merri px-2" style="padding-top: 10vh;">
     <!--Name and Title-->
-    <div class="col">
-        <div class="card tr-black darkborder">
+    <div class="col d-flex justify-content-center">
+        <div class="card tr-black" style="min-width: 15rem; max-width: 20rem;">
             <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Adventurer's Tag</h5></div>
             <div class="card-body d-flex align-items-center justify-content-center paperbody">
                 <form action="profile" method="POST">
@@ -39,8 +39,8 @@
         </div>
     </div>
     <!--Picture-->
-    <div class="col">
-        <div class="card h-100 tr-black darkborder">
+    <div class="col d-flex justify-content-center">
+        <div class="card h-100 tr-black" style="min-width: 15rem; max-width: 20rem;">
             <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Profile Picture</h5></div>
             <div class="card-body paperbody">
                 <form action="{{ url_for('picture') }}" method="POST" enctype="multipart/form-data">
@@ -58,8 +58,8 @@
         </div>
     </div>
     <!--Password-->
-    <div class="col">
-        <div class="card tr-black darkborder">
+    <div class="col d-flex justify-content-center">
+        <div class="card tr-black" style="min-width: 15rem; max-width: 20rem;">
             <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Change Password</h5></div>
             <div class="card-body paperbody d-flex align-items-center justify-content-center">
                 <form action="/account" method="POST">
@@ -85,6 +85,7 @@
 <div id="hellodarkness"></div>
 <!-- Import JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Calls lights off effect on farewell button hover (works only on large screens) -->
 <script>
     $('#myoldfriend').hover(function(){
         $('#hellodarkness').fadeTo(200, 0.9);
