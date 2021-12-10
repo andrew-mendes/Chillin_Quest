@@ -18,7 +18,7 @@
     <!--Name and Title-->
     <div class="col d-flex justify-content-center">
         <div class="card tr-black" style="min-width: 15rem; max-width: 20rem;">
-            <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Adventurer's Tag</h5></div>
+            <div class="card-header darkbar text-white p-0"><h5 class="card-title my-1 blackshadow">Adventurer's Tag</h5></div>
             <div class="card-body d-flex align-items-center justify-content-center paperbody">
                 <form action="profile" method="POST">
                     <!--Name-->
@@ -41,7 +41,7 @@
     <!--Picture-->
     <div class="col d-flex justify-content-center">
         <div class="card h-100 tr-black" style="min-width: 15rem; max-width: 20rem;">
-            <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Profile Picture</h5></div>
+            <div class="card-header darkbar text-white p-0"><h5 class="card-title my-1 blackshadow">Profile Picture</h5></div>
             <div class="card-body paperbody">
                 <form action="{{ url_for('picture') }}" method="POST" enctype="multipart/form-data">
                 <img class="avatar" src="data:image/png;base64,{{ avatar_img }}" alt="IMG">
@@ -60,7 +60,7 @@
     <!--Password-->
     <div class="col d-flex justify-content-center">
         <div class="card tr-black" style="min-width: 15rem; max-width: 20rem;">
-            <div class="card-header darkbar text-white p-0"><h5 class="card-title mt-2 blackshadow">Change Password</h5></div>
+            <div class="card-header darkbar text-white p-0"><h5 class="card-title my-1 blackshadow">Change Password</h5></div>
             <div class="card-body paperbody d-flex align-items-center justify-content-center">
                 <form action="/account" method="POST">
                     <!--New password-->

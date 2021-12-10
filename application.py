@@ -1,6 +1,9 @@
 ## Module Imports ##
 # Python Native
-import re, string, base64, datetime
+import re
+import string
+import base64
+import datetime
 
 # CS50's SQL
 from cs50 import SQL
@@ -29,7 +32,10 @@ app = Flask(__name__)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///chillinquest.db")
 
-# Ensure responses aren't cached
+# Configures cache control for background image
+# and no cache for all else
+
+
 @app.after_request
 def after_request(response):
     if request.path.startswith('/static/background.jpg'):
@@ -38,8 +44,9 @@ def after_request(response):
     else:
         response.headers["Cache-Control"] = "no-cache"
         response.headers["Pragma"] = "no-cache"
-    
-    return response    
+
+    return response
+
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -52,6 +59,8 @@ app.config["SECRET_KEY"] = "secret"
 Session(app)
 
 # Declare WTForm Upload File Forms
+
+
 class UploadForm(FlaskForm):
     file = FileField()
     submit = SubmitField("Submit picture")
@@ -72,7 +81,7 @@ def index(status="all", searchterm=""):
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
     name = user_data['name']
     title = user_data['title']
-    avatar_img=user_data['pic']
+    avatar_img = user_data['pic']
 
     # Show Quest Totals
     oquests = db.execute("SELECT COUNT (id) FROM quests WHERE user_id = ? AND done = ?", user_id, False)[0]['COUNT (id)']
@@ -102,10 +111,15 @@ def index(status="all", searchterm=""):
         if len(quest) > 25:
             return error("That's too long for a name.\nIt will not fit. Sorry friend.\nMax 25 characters")
 
+        # Limit quest description lenght
+        if len(description) > 1000:
+            return error("Sorry, mate. I've no space for a book yet.\nDo you mind summarizing it to 1000 characters or less")
+
         # In case no icon input was made
         else:
             # Insert new quest into DB
-            db.execute("INSERT INTO quests (icon, title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?, ?)", icon, quest, description, reward, user_id, done)
+            db.execute("INSERT INTO quests (icon, title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?, ?)",
+                       icon, quest, description, reward, user_id, done)
             return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
@@ -179,7 +193,8 @@ def done(quest_id=None):
 
         # Toggle 'quest done' status and sets the time of completion
         else:
-            db.execute("UPDATE quests SET (done, timestamp) = (?, ?) WHERE id = ? AND user_id = ?", True, datetime.datetime.now(), quest_id, user_id)
+            db.execute("UPDATE quests SET (done, timestamp) = (?, ?) WHERE id = ? AND user_id = ?",
+                       True, datetime.datetime.now(), quest_id, user_id)
 
         # Return to homepage
         return redirect("/")
@@ -207,11 +222,12 @@ def delete(quest_id=None):
     else:
         return redirect('/')
 
+
 # Edit user's quests
-@app.route("/editquest/<quest_id>", methods=["POST","GET"])
+@app.route("/editquest/<quest_id>", methods=["POST", "GET"])
 @login_required
 def edit(quest_id=None):
-    
+
     # Identify user
     user_id = session["user_id"]
 
@@ -220,19 +236,20 @@ def edit(quest_id=None):
 
     # Obtain user quest of choice informtation
     if request.method == "GET":
-        questinfo = db.execute("SELECT id, icon, title, description, reward FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]
+        questinfo = db.execute(
+            "SELECT id, icon, title, description, reward FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]
 
         # Load edit quest interface
         return render_template("editquest.html", form=form, questinfo=questinfo)
 
     # Update quest information
     elif request.method == "POST":
-        
+
         icon = None
 
         # Verify quest icon file input
         if form.validate_on_submit():
-            
+
             if form.file.data and allowed_file(secure_filename(form.file.data.filename)):
                 # Read picture file into memory and decode to base64
                 picture = form.file.data.read()
@@ -242,9 +259,11 @@ def edit(quest_id=None):
         quest_description = request.form.get("quest-edit-text")
         quest_reward = request.form.get("quest-edit-prize")
 
-        db.execute("UPDATE quests SET (icon, title, description, reward) = (?, ?, ?, ?) WHERE id = ? AND user_id = ?", icon, quest_title, quest_description, quest_reward, quest_id, user_id)
+        db.execute("UPDATE quests SET (icon, title, description, reward) = (?, ?, ?, ?) WHERE id = ? AND user_id = ?",
+                   icon, quest_title, quest_description, quest_reward, quest_id, user_id)
 
         return redirect("/")
+
 
 # Delete account and user information
 @app.route("/farewell", methods=["POST"])
@@ -275,6 +294,7 @@ def farewell():
     # In case the delete confirmation has not been submitted correctly
     else:
         return error("You didn't really say DELETE.\nCan't do, friend.")
+
 
 # Login
 @app.route("/login", methods=["GET", "POST"])
@@ -390,7 +410,6 @@ def profile():
         else:
             db.execute("UPDATE users SET (name, title) = (?, ?) WHERE id = ?", nickname, usertitle, user_id)
 
-
             # Prepare confirmation of change
             change = True
             form = UploadForm()
@@ -446,7 +465,7 @@ def register():
 
         # Create first quest
         path = 'templates/firststeps.txt'
-        firstquest = open(path,'r', encoding="utf-8")
+        firstquest = open(path, 'r', encoding="utf-8")
         description = firstquest.read()
         quest = 'First steps: Hey, click here!'
         reward = 'Knowledge'
@@ -454,11 +473,13 @@ def register():
 
         # Register user in the database
         try:
-            db.execute("INSERT INTO users (username, hash, name, title, pic) VALUES (?, ?, ?, ?, ?)", username, hash, name, title, avatar_img)
+            db.execute("INSERT INTO users (username, hash, name, title, pic) VALUES (?, ?, ?, ?, ?)",
+                       username, hash, name, title, avatar_img)
 
             # Register first quest
             user_id = db.execute("SELECT id FROM users WHERE username = ?", username)
-            db.execute("INSERT INTO quests (title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?)", quest, description, reward, user_id[0]['id'], done)
+            db.execute("INSERT INTO quests (title, description, reward, user_id, done) VALUES (?, ?, ?, ?, ?)",
+                       quest, description, reward, user_id[0]['id'], done)
 
             # Return user to home page
             return redirect('/')
@@ -476,7 +497,7 @@ def register():
 @app.route("/search", methods=["GET"])
 @login_required
 def search():
-    
+
     # Identify user
     user_id = session["user_id"]
 
@@ -489,10 +510,11 @@ def search():
     user_data = db.execute("SELECT pic, name, title FROM users WHERE id = ?", user_id)[0]
     name = user_data['name']
     title = user_data['title']
-    avatar_img=user_data['pic']
+    avatar_img = user_data['pic']
     form = UploadForm()
 
-    quests = db.execute("SELECT * FROM quests WHERE user_id = ? AND title LIKE (?) OR user_id = ? AND description LIKE (?)", user_id, "%" + request.args.get("q") + "%", user_id, "%" + request.args.get("q") + "%")
+    quests = db.execute("SELECT * FROM quests WHERE user_id = ? AND title LIKE (?) OR user_id = ? AND description LIKE (?)",
+                        user_id, "%" + request.args.get("q") + "%", user_id, "%" + request.args.get("q") + "%")
 
     # Return to index rendering list of quests that match search
     return render_template("index.html", form=form, quests=quests, name=name, title=title, avatar_img=avatar_img, status="all", cquests=cquests, oquests=oquests, totalquests=totalquests)

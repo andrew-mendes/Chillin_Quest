@@ -1,17 +1,20 @@
 
-# Chillin' Quest <img src="README.assets/logo.png" alt="MarineGEO circle logo" style="float: right; height: 60px; width:auto;"/>
-RPG-like quest maker for life
+<img src="README.assets/logo.png" alt="MarineGEO circle logo" style="height: 60px; width:auto;"/>
+
+Chillin' Quest is an RPG-like quest maker for life
+
 ___
 
 <a href='https://www.edx.org' target="_blank"><img alt='EDX' src='https://img.shields.io/badge/edX®-100000?style=flat&logo=EDX&logoColor=FFFFFF&labelColor=77202E&color=8B8D90'/></a> <a href='https://python.org' target="_blank"><img alt='Python' src='https://img.shields.io/badge/Made_with Python-100000?style=flat&logo=Python&logoColor=ffde57&labelColor=4584b6&color=646464'/></a> <a href='https://developer.mozilla.org/pt-BR/docs/Web/JavaScript' target="_blank"><img alt='JavaScript' src='https://img.shields.io/badge/Made_with JavaScript-100000?style=flat&logo=JavaScript&logoColor=f7df1e&labelColor=000000&color=2F2F2F'/></a> <a href='https://flask.palletsprojects.com/en/2.0.x/' target="_blank"><img alt='Flask' src='https://img.shields.io/badge/Made_with Flask-100000?style=flat&logo=Flask&logoColor=000000&labelColor=FFFFFF&color=2F2F2F'/></a> <a href='https://jquery.com' target="_blank"><img alt='JQuery' src='https://img.shields.io/badge/JQuery-100000?style=flat&logo=JQuery&logoColor=7acef4&labelColor=0769ad&color=FFFFFF'/></a> <a href='https://getbootstrap.com' target="_blank"><img alt='Bootstrap' src='https://img.shields.io/badge/Bootstrap-100000?style=flat&logo=Bootstrap&logoColor=563d7c&labelColor=FFFFFF&color=563d7c'/></a>
 
-Video Demo: <URL HERE>
+## 🎞️ Video Demo
+<URL HERE>
 
-## Description
+## ✏️ Description
 
   A web application that allows users to create, manage and customize their real life objectives as RPG-like quests.
 
-## Table of Contents
+## 📜 Table of Contents
 
 <!--ts-->
   - [Objective](#objective)
@@ -29,32 +32,34 @@ Video Demo: <URL HERE>
     - [Home](#home)
     - [Profile & Account](#profile-account)
   - [Development Changes](#development-changes)
+  - [Tests and Compatibility](#tests-and-compatibility)
   - [Acknowledgements](#acknowledgements)
-  - [About the author](#about)
+  - [About the Author](#about-the-author)
+  - [License](#license)
 
 <!--te-->
 
-## Objective
+## 🎯 Objective
 
 ​Built as a Final Project for my commitment to ***Harvard's CS50x - Introduction to Computer Science - 2021***  (<https://cs50.harvard.edu/x/>).
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Project Status
+## 📝 Project Status
 
-As a final project commitment for the course it is completed. However I do intend to develop a new possible mobile version of it in the future with some other features and ideas that were cutout from this version.
+As a final project commitment for the course it is completed. However I do intend to develop a new possible mobile version of it in the future with some other cool features and ideas that were cutout from this version and maybe even more.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Features
+## ⭐ Features
 
 - Friendly and intuitive UI for users to add, manage, filter and customize their quests.
-- Responsive to screen size and different types of actions, such as mouseover, selection, etc.
 - Customizable character (as any RPG must be).
+- Responsive to screen size and different types of actions, such as mouseover, selection, etc.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Tech Stack
+## 🧩 Tech Stack
 
 - [Python](https://python.org)
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
@@ -65,9 +70,9 @@ As a final project commitment for the course it is completed. However I do inten
 - [Bootstrap](https://getbootstrap.com)
 - [SQLite](https://www.sqlite.org/index.html) - through CS50's [python module](https://cs50.readthedocs.io/libraries/cs50/python/)
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-### Requirements
+### 🔩 Requirements
 
 - Python 3.1+
 
@@ -83,9 +88,9 @@ All below modules included in */templates/requirements.txt* for quick installati
   
   *This will export the environment variables in the *.flaskenv* file, deploying the server in development mode, which is not suitable for production.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Installation
+## 📀 Installation
 
 **To run local on Windows:**
 1. From command prompt, once in the /chillinquest folder run:<br>
@@ -102,9 +107,9 @@ All below modules included in */templates/requirements.txt* for quick installati
       Open the local link:
      ​ `* Running on http://127.0.0.1:5000/`
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Project Files
+## 📁 Project Files
 
 #### application
 application.&#8203;py - The main application file. Handles module imports, flask server and database deployment as well as redirects to all the webpages and loading of resources.
@@ -128,7 +133,7 @@ Configuration file containing the forementioned environment variables required t
 
 NOTE: Should be modified before usage if launching for production.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
 #### **/templates**
 ##### Folder containning the following html and txt templates:
@@ -155,19 +160,21 @@ NOTE: Should be modified before usage if launching for production.
 - **styles.css** - Contains all UI elements' styles.
 - **multiple images for all the UI** - Logo, icons, default avatar and background.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## UI
+## 💻 UI
 
 #### Starting and Register Screens
 
-At the main screen the user has the option to register a new account or log in if they already have one.
-
 <img src="README.assets\startandregister.jpg" alt="starting" style="zoom: 100%;" />
 
-[return to top](#table-of-contents) :arrow_up_small:
+At the main screen the user has the option to register a new account or log in if they already have one.
+
+🔼 [return to top](#table-of-contents)
 
 #### Home
+
+<img src="README.assets\home.jpg" alt="home" style="zoom: 100%;"/>
 
 **User card**
 A user card with a default picture, name and title will be shown on the left. All of these can be changed at the Profile & Account page, accessible at the top right of the screen.
@@ -186,57 +193,69 @@ Quests clicked expand a box with its description, reward, as well as completion,
 
 Once marked as completed, the title bar turns gold and completion date and time will be shown.
 
-<img src="README.assets\home.jpg" alt="home" style="zoom: 100%;"/>
-
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
 #### Profile & Account
+
+<img src="README.assets\account.jpg" alt="account" style="zoom: 100%;"/>
+
 On this page the user can change their picture, profile information and password, all separately.
 
 A "Bid Farewell" button at the bottom will give the option to delete their account along with all the user's quests and information.
 
-<img src="README.assets\account.jpg" alt="account" style="zoom: 100%;"/>
-
-#### About deletion:
+#### About deletion
 Irreversible changes such as deletion of quests and the user's account will pop up a message requesting the user to confirm their decision.
 
-[return to top](#table-of-contents) :arrow_up_small:
+🔼 [return to top](#table-of-contents)
 
-## Development Changes
+## 🔨 Development Changes
 
-​ During development, as predicted I had to face some difficulties that made me cutout some of its features with the aim of delivering a solid final product even without them.
+During development as predicted I had to face some difficulties that made me cutout some of its features with the aim of delivering a solid final product even without them.
 
-[return to top](#table-of-contents) :arrow_up_small:
+All of these features should be on future any future releases of this project when I work on it:
 
-**Removed features:**
+#### Scrapped features
 
-  At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
+**Icons Gallery**
+I planed on it but decided to leave it open to the user to decide whatever image they want as icons for quest. There's also a default one that comes along if none is chosen.
 
-  A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but the complexity involved in the current scope of the project was out of reach for me at the time.
+**Local Storage**
+At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
 
-[return to top](#table-of-contents) :arrow_up_small:
+**Tree-like quests UI**
+A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but nonetheless very advanced for the front-end. 
 
-## Tests and compatibility
+**Dynamic quest search tool**
+I had not deepened my thoughts on this at this start of the project, and after some research I noticed that to have quests shown dynamically it would require me to change the whole way I implemented the quests through Flask and add some JavaScript to show them.
+
+🔼 [return to top](#table-of-contents)
+
+## 🧪 Tests and compatibility
 
 All tests were run in a Windows Desktop environment.
 
 Most of the funcionalities of the interface still apply on almost all mobile devices, exceptions detected for foldable ones and iPad (non-pro version).
 
-## Acknowledgements
+## 🏅 Acknowledgements
 
-I wouldn't be able to reach the end of this project without the support of my dear friends.
+I wouldn't be able to reach the end of this project without the support of my dear friends. :heart:
 
-I would also like to congratulate and give my sincere thanks Professor David J. Malan, Bryan Yu, Doug Lloyd and all the CS50 staff for such an inspiring and dedicated course. 
+I would also like to congratulate and give my sincere thanks Professor David J. Malan, Bryan Yu, Doug Lloyd and all the CS50's staff for such an inspiring and dedicated course. I'm thrilled to start the next one!
 
-## About the Author
+🔼 [return to top](#table-of-contents) 
+
+## 🖖 About the Author
 
  <img style="border-radius: 50%;" src="README.assets/andrew.jpg" width="100px;" alt=""/>
 
  <b>Andrew Mendes</b>
+ Former IT professional getting back to coding
  Macaé, RJ - Brazil
 
-[![Github Badge](https://img.shields.io/badge/-andrewmendes-black?style=flat-square&logo=Github&logoColor=white&link=https://github.com/andrew-mendes)](https://github.com/andrew-mendes) [![Linkedin Badge](https://img.shields.io/badge/-AndrewMendes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-mendes-73805720b/)](https://www.linkedin.com/in/andrew-mendes-73805720b/) [![Gmail Badge](https://img.shields.io/badge/-andrewmendes@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andrewmendes@gmail.com)](mailto:tgmarinho@gmail.com)
+[![Github Badge](https://img.shields.io/badge/-AndrewMendes-black?style=flat-square&logo=Github&logoColor=white&link=https://github.com/andrew-mendes)](https://github.com/andrew-mendes) [![Linkedin Badge](https://img.shields.io/badge/-AndrewMendes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-mendes-73805720b/)](https://www.linkedin.com/in/andrew-mendes-73805720b/) [![Gmail Badge](https://img.shields.io/badge/-andrewmendes@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andrewmendes@gmail.com)](mailto:tgmarinho@gmail.com)
 
-[return to top](#table-of-contents) :arrow_up_small: 
+## 🔑 License
 
+TODO
 
+🔼 [return to top](#table-of-contents) 

@@ -18,7 +18,7 @@ def allowed_file(filename):
 def error(message, code=400):
     """Render error messages to the user."""
     # Enables paragraph division on messages
-    message=message.split("\n")
+    message = message.split("\n")
 
     return render_template("error.html", message=message, code=code)
 

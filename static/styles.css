@@ -1,4 +1,5 @@
 /*IMAGE CUSTOMIZATION*/
+
 .avatar {
     border-width: 2px;
     border-style: solid;
@@ -40,8 +41,13 @@
 }
 
 /*BUTTONS*/
+
 .btn-outline {
     outline: 1px solid black;
+}
+
+.btn-play:hover {
+    box-shadow: 0 0 5px 3px #ffffcc !important;
 }
 
 .btn-red:hover{
@@ -98,6 +104,7 @@
 
 
 /*BROWN BARS*/
+
 .darkbar {
     box-shadow: -5px 0 5px 1px rgba(28,19,12,1) inset, 5px 0 5px 1px rgba(28,19,12,1) inset;
     background: rgb(28,19,12);
@@ -107,7 +114,7 @@
     outline: 1px solid black;
 }
 
-/*Bottom brown bars, usually for buttons*/
+/*Bottom brown bars, mostly for placing buttons*/
 .darkbottom {
     background: linear-gradient(90deg, rgba(28,19,12,1) 100%, rgba(28,19,12,1) 100%);
     background: linear-gradient(to bottom, #5e4833 0%, #1c130c 100%);
@@ -167,6 +174,7 @@
 }
 
 /*BACKGROUND COLORS*/
+
 .paperbody {
 
     background: linear-gradient(to top left, khaki, linen);
@@ -183,6 +191,7 @@
 }
 
 /*SPECIAL DIVS*/
+
 /*Main Div*/
 .container-custom {
     width: 100%;
@@ -198,6 +207,7 @@
 }
 
 /*FORMS CUSTOMIZATION*/
+
 /*Outer glow in selected inputs and text areas*/
 input:focus {
   outline: none !important;
@@ -219,14 +229,11 @@ textarea:focus {
     width: auto;
 }
 
-
-.form-wauto {
+.form-control {
     /* Center form controls */
     display: inline-block;
-
-    /* Override Bootstrap's 100% width for form controls */
-    width: auto;
-
+    /* Avoid extrapolating parent's width upon reducing window size */
+    max-width: inherit;
 }
 
 /*Paper color*/
@@ -248,6 +255,7 @@ textarea:focus {
 }
 
 /*QUEST ACCORDION FOOTER BUTTONS*/
+
 /*Green done*/
 .link-button-done {
     border: none;
@@ -376,6 +384,15 @@ textarea:focus {
 }
 
 /*LAYOUT ORGANIZATION AND PECULIARITIES*/
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #ffffcc;
+}
+
 body {
     min-height: 100vh;
     width: 100%;
@@ -433,6 +450,7 @@ main
     margin-top: 15vh !important;
 }
 
+/* EFFECTS */
 
 /* Dim the lights on delete account button hover */
 @media screen and (min-width: 768px) {
@@ -452,4 +470,54 @@ main
     z-index:10;
 }
 
+/* Fade in effect for login screen forms */
+.fade-in {
+    animation-name: FadeIn;
+    animation-duration: 3s;
+    transition-timing-function: linear;
+  }
 
+@keyframes FadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+}
+
+@-moz-keyframes FadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+}
+
+@-webkit-keyframes FadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+}
+
+@-o-keyframes FadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+}
+
+@-ms-keyframes FadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+}

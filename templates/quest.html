@@ -10,9 +10,11 @@
             <!--Reward-->
             <div class="d-flex align-self-center col-4">
                 {% if quest['done'] != true %}
-                <div><b>Reward:&nbsp;</b>{{ quest['reward'] }}</div>
+                <div><b>Reward:&nbsp;</b>
+                {{ quest['reward'] }}</div>
                 {% else %}
-                <div class="reward"><b>Reward:&nbsp;</b>{{ quest['reward'] }}</div>
+                <div class="reward"><b>Reward:&nbsp;</b>
+                {{ quest['reward'] }}</div>
                 {% endif %}
             </div>
             <!--Complete Button-->

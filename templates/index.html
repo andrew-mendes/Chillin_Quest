@@ -5,10 +5,10 @@
 {% endblock title %}
 
 {% block main %}
-<div class="d-flex flex-md-row flex-column mt-5 gap-3 w-100 ">
+<div class="d-flex flex-md-row flex-column mt-5 gap-3">
     <!--LEFT COLUMN-->
     <!--User Info Card-->
-    <div class="">
+    <div>
         <div class="d-md-block d-flex justify-content-center px-md-5 mb-3 mx-100">
             <div class="card paperbody border-dark darkborder">
                 <img src="data:image/png;base64,{{ avatar_img }}" class="avatar" alt="avatar">
@@ -26,39 +26,50 @@
                 <span class="glow">&nbsp;Total Quests: &nbsp;<b class="bigger">{{ totalquests }}</b></span>
             </div>
         </div>
+        <br>
+        <h6 class="merri text-white blackshadow fw-bold">Made by <a href="https://www.linkedin.com/in/mendesandrew/">Andrew Mendes</a> for CS50 - 2021</h6>
     </div>
-    <!--RIGHT COLUMN-->
     <!--New Quest Modal-->
     {% include "newquest.html" ignore missing %}
+    <!--RIGHT COLUMN-->
     <div class="col pb-3 pe-md-5 ps-md-0 px-2">
-    <!-- <div class="col px-md-5 px-2"> -->
     <!--Quests Navbar-->
-        <nav class="d-flex navbar navbar-expand-sm darkbar navbar-dark merri mb-3 p-0">
+        <nav class="d-flex navbar navbar-expand-lg darkbar navbar-dark merri mb-3 p-0">
             <div class="container-fluid">
-                <!--Open Modal for New Quest-->
-                <div class="col-4">
+                <!-- New Quest Modal Button -->
+                <div class="col-lg-4">
                     <button type="button" class="btn d-flex col-4 justify-content-start tr-full newquest p-0">
                         <a class="navbar-brand tr-full" aria-current="page" data-bs-toggle="modal" data-bs-target="#newquestModal" data-bs-whatever="New Quest"><b class="text-warning mt-0 mb-0">!</b> &nbsp;New Quest</a>
                     </button>
                 </div>
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Navbar Collapse-Expand Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!--Search Form-->
-                <div class="d-sm-flex flex-row col-4 navbar-collapse collapse" id="navbarNavAltMarkup">
-                    <form action="search" method="GET" class="d-flex flex-row mt-sm-0 mt-3 mx-0 w-75">
-                        <a class="btn hidden refresh" href="/"><img src="/static/arrow.png" style="max-height: 25px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></a>
-                        <input name="q" type="text" class="form-wauto form-control mw-100 p-1 btn-outline lightwood placeholder-brown" autocomplete="off" placeholder="&nbsp;Search quests">
-                        <button class="d-none btn btn-light>" type="submit"></button>
-                    </form>
-                </div>
-                <!--Quest Filters-->
-                <div class="d-sm-flex col-4 justify-content-end navbar-collapse collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link nav-quest-selector link-light" id="allquests" href="/">All</a>
-                        <a class="nav-link nav-quest-selector link-light" id="compquests" href="/quests/done">Complete</a>
-                        <a class="nav-link nav-quest-selector link-light" id="openquests" href="/quests/open">Open</a>
-                    </div>
+                <!-- Navbar Colapsable Items -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex justify-content-center justify-content-lg-between">
+                        <div class="col-lg-4">
+                        <!-- Search Form -->
+                        <li class="nav-item">
+                            <form action="search" method="GET" class="d-flex py-1 justify-content-center flex-sm-row mt-sm-0 mt-3 mx-auto w-100">
+                                <a class="btn hidden refresh p-1 border-0" href="/"><img src="/static/arrow.png" style="max-height: 25px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></a>
+                                <input name="q" type="text" class="form-control wauto p-1 btn-outline lightwood placeholder-brown" autocomplete="off" placeholder="&nbsp;Search quests">
+                                <button class="d-none btn btn-light>" type="submit"></button>
+                            </form>
+                        </li>
+                        </div>
+                        <!--Quest Filters-->
+                        <div class="col-lg-4">
+                        <li class="nav-item">
+                            <div class="navbar-nav d-flex flex-row justify-content-evenly">
+                                <a class="nav-link nav-quest-selector link-light" id="allquests" href="/">All</a>
+                                <a class="nav-link nav-quest-selector link-light" id="compquests" href="/quests/done">Complete</a>
+                                <a class="nav-link nav-quest-selector link-light" id="openquests" href="/quests/open">Open</a>
+                            </div>
+                        </li>
+                        </div>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -69,7 +80,7 @@
         {% else %}
             {% include "all.html" ignore missing %}
         {% endif %}
-    </div>
+    </div>    
 </div>
 
 <script>
