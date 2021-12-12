@@ -94,7 +94,7 @@
             playMusic.onplaying = function() {
             isPlaying = true;
             document.getElementById("playMusic").loop = true;
-            sessionStorage.setItem("isPlaying", isPlaying);
+            localStorage.setItem("isPlaying", isPlaying);
             let playButtons = document.querySelectorAll(".playButton");
             playButtons.forEach(playButton => {
                 if (playButton.classList.contains("text-white")){
@@ -106,7 +106,7 @@
 
             playMusic.onpause = function() {
             isPlaying = false;
-            sessionStorage.setItem("isPlaying", isPlaying);
+            localStorage.setItem("isPlaying", isPlaying);
             let playButtons = document.querySelectorAll(".playButton");
             playButtons.forEach(playButton => {
                 if (playButton.classList.contains("text-warning")){
@@ -140,18 +140,20 @@
                 
                 // Keep soundtrack playing
                 var playMusic = document.getElementById("playMusic");
-                if (sessionStorage.getItem("isPlaying") === "true"){
-                    playMusic.currentTime = parseFloat(sessionStorage.getItem("currentTime"));
+                if (localStorage.getItem("isPlaying") === "true"){
+                    playMusic.currentTime = parseFloat(localStorage.getItem("currentTime"));
+                    playMusic.volume = parseFloat(localStorage.getItem("volume"))
                     playMusic.play();
                 }
             };
             // Keeps track of song current time upon leaving a page
             window.onunload = function(){
-                if (sessionStorage.getItem("isPlaying") === "true"){
-                    sessionStorage.setItem("currentTime", document.getElementById("playMusic").currentTime);
+                if (localStorage.getItem("isPlaying") === "true"){
+                    localStorage.setItem("currentTime", document.getElementById("playMusic").currentTime);
+                    localStorage.setItem("volume", document.getElementById("playMusic").volume);
                 }
                 else {
-                    sessionStorage.setItem("currentTime", 0);
+                    localStorage.setItem("currentTime", 0);
                 }
             }
         </script>

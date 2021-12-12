@@ -15,8 +15,8 @@ def allowed_file(filename):
 
 
 # Renders error messages
-def error(message, code=400):
-    """Render error messages to the user."""
+def error(message, code):
+    
     # Enables paragraph division on messages
     message = message.split("\n")
 

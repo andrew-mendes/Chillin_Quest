@@ -109,11 +109,11 @@ def index(status="all", searchterm=""):
 
         # Limit quest titles lenght
         if len(quest) > 25:
-            return error("That's too long for a name.\nIt will not fit. Sorry friend.\nMax 25 characters")
+            return error("That's too long for a name.\nIt will not fit. Sorry friend.\nMax 25 characters", 400)
 
         # Limit quest description lenght
         if len(description) > 1000:
-            return error("Sorry, mate. I've no space for a book yet.\nDo you mind summarizing it to 1000 characters or less")
+            return error("Sorry, mate. I've no space for a book yet.\nDo you mind summarizing it to 1000 characters or less", 400)
 
         # In case no icon input was made
         else:
@@ -131,7 +131,7 @@ def index(status="all", searchterm=""):
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def password_change():
-    """Changes user's password, picture, name and title, and deletes account"""
+    # Changes user's password, picture, name and title, and deletes account
 
     # Identify user
     user_id = session["user_id"]
@@ -145,16 +145,16 @@ def password_change():
 
         # Ensure new password was submitted
         if not new_password:
-            return error("Can you tell me the new password you want, friend?")
+            return error("Can you tell me the new password you want, friend?", 400)
         # Ensure confirmation was submitted
         elif not confirmation:
-            return error("Didn't hear that right, friend.\nCan you repeat that password again, twice in a row?\nNo mistakes!")
+            return error("Didn't hear that right, friend.\nCan you repeat that password again, twice in a row?\nNo mistakes!", 400)
         # Ensure confirmation matches
         elif new_password != confirmation:
-            return error("Hey, can you say that new password twice in a row?\nNo mistakes.")
+            return error("Hey, can you say that new password twice in a row?\nNo mistakes.", 400)
         # Ensure new password is different
         elif check_password_hash(token[0]['hash'], new_password):
-            return error("Wanna change or not, friend?\nYour new password is the same.")
+            return error("Wanna change or not, friend?\nYour new password is the same.", 400)
         # Change the password
         else:
             hash = generate_password_hash(new_password)
@@ -234,6 +234,9 @@ def edit(quest_id=None):
     # Define form
     form = UploadForm()
 
+    # Retrieve icon
+    icon = db.execute("SELECT icon FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]['icon']
+    
     # Obtain user quest of choice informtation
     if request.method == "GET":
         questinfo = db.execute(
@@ -245,8 +248,6 @@ def edit(quest_id=None):
     # Update quest information
     elif request.method == "POST":
 
-        icon = None
-
         # Verify quest icon file input
         if form.validate_on_submit():
 
@@ -254,6 +255,8 @@ def edit(quest_id=None):
                 # Read picture file into memory and decode to base64
                 picture = form.file.data.read()
                 icon = base64.b64encode(picture).decode(encoding='utf-8')
+        else:
+            icon = db.execute("SELECT icon FROM quests WHERE id = ?, quest_id")        
 
         quest_title = request.form.get("quest-edit-name")
         quest_description = request.form.get("quest-edit-text")
@@ -263,6 +266,13 @@ def edit(quest_id=None):
                    icon, quest_title, quest_description, quest_reward, quest_id, user_id)
 
         return redirect("/")
+
+
+# # Handles Not Found Errors
+# @app.errorhandler(code)
+# def error404(404):
+
+#     return error("You seem lost mate.\nAte or drank the wrong stuff?\nHere, lemme take ya back.")
 
 
 # Delete account and user information
@@ -293,33 +303,34 @@ def farewell():
 
     # In case the delete confirmation has not been submitted correctly
     else:
-        return error("You didn't really say DELETE.\nCan't do, friend.")
+        return error("You didn't really say DELETE.\nCan't do, friend.", 400)
 
 
 # Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
-    # Forget any user_id
-    session.clear()
+    # Redirects already signed in users to home
+    if session.get("user_id") != None:
+        return redirect("/")
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return error("No introductions?\nWhat's your username, adventurer?")
+            return error("No introductions?\nWhat's your username, adventurer?", 400)
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return error("Tell me the password to the club, would ya?")
+            return error("Tell me the password to the club, would ya?", 400)
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return error("Something wrong with that name or password of yours, traveller.\nAre you really from around?")
+            return error("Something wrong with that name or password of yours, traveller.\nAre you really from around?", 400)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -374,7 +385,7 @@ def picture():
 
             # Handle wrong file type submission
             else:
-                return error("Is that a picture?\nCan't see ya!\n(Only jpg, jpeg or png accepted)")
+                return error("Is that a picture?\nCan't see ya!\n(Only jpg, jpeg or png accepted)", 415)
 
     else:
         return redirect("/account")
@@ -402,10 +413,10 @@ def profile():
 
         # Verification
         if int(len(nickname)) > 25:
-            return error("Name is too long; Didn't read.\n(max 25 characters)")
+            return error("Name is too long; Didn't read.\n(max 25 characters)", 400)
 
         if int(len(usertitle)) > 50:
-            return error("Title is too long; Didn't read.\n(max 50 characters)")
+            return error("Title is too long; Didn't read.\n(max 50 characters)", 400)
 
         else:
             db.execute("UPDATE users SET (name, title) = (?, ?) WHERE id = ?", nickname, usertitle, user_id)
@@ -432,6 +443,10 @@ def profile():
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
+    # Redirects already signed in users to home
+    if session.get("user_id") != None:
+        return redirect("/")
+
     # Obtain forms input
     if (request.method == "POST"):
         username = request.form.get("username")
@@ -440,16 +455,16 @@ def register():
 
         # Ensure username input
         if not username:
-            return error("No introductions?\nWhat should be your username, adventurer?")
+            return error("No introductions?\nWhat should be your username, adventurer?", 400)
         # Ensure password input
         elif not password:
-            return error("Nay passwords,\nnay joining the club.\nGood now?")
+            return error("Nay passwords,\nnay joining the club.\nGood now?", 400)
         # Ensure password confirmation input
         elif not confirmation:
-            return error("Didn't hear that right.\nCan you repeat that password again, twice in a row?\nNo mistakes.")
+            return error("Didn't hear that right.\nCan you repeat that password again, twice in a row?\nNo mistakes.", 400)
         # Ensure password and confirmation match
         elif password != confirmation:
-            return error("Hey, can you say the same password twice in a row?\nNo mistakes.")
+            return error("Hey, can you say the same password twice in a row?\nNo mistakes.", 400)
 
         # Encrypt password
         hash = generate_password_hash(password)
@@ -486,7 +501,7 @@ def register():
 
         # Ensures no user duplicates
         except:
-            return error("I'm sure I already know someone else with that same name traveller.\nTry another one, would ya?")
+            return error("I'm sure I already know someone else with that same name traveller.\nTry another one, would ya?", 400)
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:

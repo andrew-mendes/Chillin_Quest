@@ -47,7 +47,7 @@ ___
 
 ## 📝 Project Status
 
-As a final project commitment for the course it is completed. However I do intend to develop a new possible mobile version of it in the future with some other cool features and ideas that were cutout from this version and maybe even more.
+As a final project commitment for the course it is completed. However I do intend to develop a new improved mobile version of it in the future with some other cool features and ideas that were cutout from this version and maybe even more.
 
 🔼 [return to top](#table-of-contents)
 
@@ -56,6 +56,7 @@ As a final project commitment for the course it is completed. However I do inten
 - Friendly and intuitive UI for users to add, manage, filter and customize their quests.
 - Customizable character (as any RPG must be).
 - Responsive to screen size and different types of actions, such as mouseover, selection, etc.
+- Cool adventurous soundtrack.
 
 🔼 [return to top](#table-of-contents)
 
@@ -158,11 +159,19 @@ NOTE: Should be modified before usage if launching for production.
 ##### Folder containning the following files:
 
 - **styles.css** - Contains all UI elements' styles.
-- **multiple images for all the UI** - Logo, icons, default avatar and background.
+- **multiple images for all the UI** - Logo, icons, soundtrack, default avatar and background.
 
 🔼 [return to top](#table-of-contents)
 
 ## 💻 UI
+
+#### Soundtrack Player
+
+At the top left of all screens the user will find a button to play the Chillin' Quest main theme, _Feet on the Road_, which will play on loop despite of the screen, until clicked again to cancel. Buttons to increase and decrease volume are there as well.
+
+And no, it will **not** play automatically! Don't worry.
+
+**NOTE:** Due to some current browsers' limitations concerning media autoplay, upon returning to previous pages the soundtrack may stop playing, returning automatically if the user refreshes or clicks on any internal links. This is something I plan to study and solve in future versions, maybe built on React. I will have research further.
 
 #### Starting and Register Screens
 
@@ -226,7 +235,7 @@ At start I intended to store user information locally and have cloud save and sy
 A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but nonetheless very advanced for the front-end. 
 
 **Dynamic quest search tool**
-I had not deepened my thoughts on this at this start of the project, and after some research I noticed that to have quests shown dynamically it would require me to change the whole way I implemented the quests through Flask and add some JavaScript to show them.
+I had not thought about this at the start of the project, and after some research I noticed that to have quests shown dynamically it would require me to change the whole way I implemented the quests through Flask and add some JavaScript to show them or maybe do it all on React, which I still intend to learn. So maybe (probably) on version 2.0.
 
 🔼 [return to top](#table-of-contents)
 
@@ -234,7 +243,15 @@ I had not deepened my thoughts on this at this start of the project, and after s
 
 All tests were run in a Windows Desktop environment.
 
-Most of the funcionalities of the interface still apply on almost all mobile devices, exceptions detected for foldable ones and iPad (non-pro version).
+On browser tests the UI scaling responded well to most of the common mobile devices, such as Moto G, Galaxy, iPhone and iPad:
+
+<img src="README.assets\mobilesok.png" alt="account" style="zoom: 20%;"/>
+
+However there are some exceptions:
+
+On Nest Hub, Galaxy Fold, iPad Pro and Surface Duo the UI is still usable but needs to be dragged to some areas because it does not scale well with these devices yet.  
+
+🔼 [return to top](#table-of-contents) 
 
 ## 🏅 Acknowledgements
 
@@ -256,6 +273,8 @@ I would also like to congratulate and give my sincere thanks Professor David J. 
 
 ## 🔑 License
 
-TODO
+Chillin' Quest is licensed under the
+[Creative Commons Zero v1.0 Universal](https://github.com/andrew-mendes/Chillin-Quest/blob/master/LICENSE.md)
+
 
 🔼 [return to top](#table-of-contents) 
