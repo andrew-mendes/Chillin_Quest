@@ -41,7 +41,7 @@ ___
 
 ## 🎯 Objective
 
-​Built as a Final Project for my commitment to ***Harvard's CS50x - Introduction to Computer Science - 2021***  (<https://cs50.harvard.edu/x/>).
+​Built as a Final Project for my commitment to [***Harvard's CS50x - Introduction to Computer Science***](https://cs50.harvard.edu/x/) ***- 2021***.
 
 🔼 [return to top](#table-of-contents)
 
