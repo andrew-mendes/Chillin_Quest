@@ -3,7 +3,7 @@
         <div style="white-space: pre-line;"><i>{{ quest['description'] }}</i></div>
         <hr class="mb-1">
         {% if quest['done'] == True %}
-            <div class="merri text-success text-center"><i>Completed on {{ quest['timestamp'].replace("-", "/").replace(" ", " at ") }}</i></div>
+            <div class="merri text-success text-center"><i>{{ quest['timestamp'] }}</i></div>
         {% endif %}
         <!--Bottom row-->
         <div class="d-flex flex-row align-content-center gap-2">

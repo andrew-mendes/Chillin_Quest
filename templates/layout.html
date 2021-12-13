@@ -34,7 +34,7 @@
                 <!--LARGE SCREEN CONFIG-->
                 <nav class="d-md-flex justify-content-between m-0 row navbar bg-transparent d-none px-md-5">
                     <div class="col-4">
-                        <audio id="playMusic" src="static/feet_on_the_road.mp3" preload="auto">
+                        <audio id="playMusic" src="/static/feet_on_the_road.mp3" preload="auto">
                         </audio>
                         <i class="playButton btn btn-sm btn-play darkbottom text-white bi bi-music-note-beamed" onClick="togglePlay()"></i>
                         <button class="btn btn-sm btn-play darkbottom" onclick="document.getElementById('playMusic').volume -= 0.1"><i class="bi text-white bi-dash-lg"></i></button>
@@ -68,7 +68,7 @@
                         <div class="col-3"></div>
                     {% endif %}
                     <div class="text-center mt-3">
-                        <audio id="playMusic" src="static/feet_on_the_road.mp3" preload="auto">
+                        <audio id="playMusic" src="/static/feet_on_the_road.mp3" preload="auto">
                         </audio>
                         <i class="playButton btn mx-3 darkbottom text-white bi bi-music-note-beamed" onClick="togglePlay()"></i>
                         <button class="btn mx-3 darkbottom" onclick="document.getElementById('playMusic').volume -= 0.1"><i class="bi text-white bi-dash-lg"></i></button>
@@ -82,82 +82,82 @@
                 </main>
             </div>
         </div>
-        <script>
-            // Enable soundtrack
-            var playMusic = document.getElementById("playMusic");
-            var isPlaying = false;
-
-            function togglePlay() {
-            isPlaying ? playMusic.pause() : playMusic.play();
-            };
-
-            playMusic.onplaying = function() {
-            isPlaying = true;
-            document.getElementById("playMusic").loop = true;
-            localStorage.setItem("isPlaying", isPlaying);
-            let playButtons = document.querySelectorAll(".playButton");
-            playButtons.forEach(playButton => {
-                if (playButton.classList.contains("text-white")){
-                    playButton.classList.remove("text-white")
-                    playButton.classList.add("text-warning")
-                }
-            });
-            };
-
-            playMusic.onpause = function() {
-            isPlaying = false;
-            localStorage.setItem("isPlaying", isPlaying);
-            let playButtons = document.querySelectorAll(".playButton");
-            playButtons.forEach(playButton => {
-                if (playButton.classList.contains("text-warning")){
-                    playButton.classList.remove("text-warning")
-                    playButton.classList.add("text-white")
-                }
-            });
-            };
-
-            // Calls several functions on page load
-            window.onload = function(){
-                // Edit quest modal
-                var modalEditElmt = document.getElementById('editModal') ? document.getElementById('editModal') : null;
-                if(modalEditElmt !== null) {
-                    var modalEdit = new window.bootstrap.Modal(modalEditElmt, {});
-                    modalEdit.show();
-                }
-
-                // Error handler modal
-                var modalErrorElmt = document.getElementById('errorModal') ? document.getElementById('errorModal') : null;
-                if(modalErrorElmt !== null) {
-                    var modalError = new window.bootstrap.Modal(modalErrorElmt, {});
-                    modalError.show();
-                }
-
-                // Mouseover icons tooltips
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                    return new window.bootstrap.Tooltip(tooltipTriggerEl);
-                });
-                
-                // Keep soundtrack playing
-                var playMusic = document.getElementById("playMusic");
-                if (localStorage.getItem("isPlaying") === "true"){
-                    playMusic.currentTime = parseFloat(localStorage.getItem("currentTime"));
-                    playMusic.volume = parseFloat(localStorage.getItem("volume"))
-                    playMusic.play();
-                }
-            };
-            // Keeps track of song current time upon leaving a page
-            window.onunload = function(){
-                if (localStorage.getItem("isPlaying") === "true"){
-                    localStorage.setItem("currentTime", document.getElementById("playMusic").currentTime);
-                    localStorage.setItem("volume", document.getElementById("playMusic").volume);
-                }
-                else {
-                    localStorage.setItem("currentTime", 0);
-                }
-            }
-        </script>
         <!-- Import Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
+    <script>
+        // Enable soundtrack
+        var playMusic = document.getElementById("playMusic");
+        var isPlaying = false;
+
+        function togglePlay() {
+        isPlaying ? playMusic.pause() : playMusic.play();
+        };
+
+        playMusic.onplaying = function() {
+        isPlaying = true;
+        document.getElementById("playMusic").loop = true;
+        localStorage.setItem("isPlaying", isPlaying);
+        let playButtons = document.querySelectorAll(".playButton");
+        playButtons.forEach(playButton => {
+            if (playButton.classList.contains("text-white")){
+                playButton.classList.remove("text-white")
+                playButton.classList.add("text-warning")
+            }
+        });
+        };
+
+        playMusic.onpause = function() {
+        isPlaying = false;
+        localStorage.setItem("isPlaying", isPlaying);
+        let playButtons = document.querySelectorAll(".playButton");
+        playButtons.forEach(playButton => {
+            if (playButton.classList.contains("text-warning")){
+                playButton.classList.remove("text-warning")
+                playButton.classList.add("text-white")
+            }
+        });
+        };
+
+        // Calls several functions on page load
+        window.onload = function(){
+            // Edit quest modal
+            var modalEditElmt = document.getElementById('editModal') ? document.getElementById('editModal') : null;
+            if(modalEditElmt !== null) {
+                var modalEdit = new window.bootstrap.Modal(modalEditElmt, {});
+                modalEdit.show();
+            }
+
+            // Error handler modal
+            var modalErrorElmt = document.getElementById('errorModal') ? document.getElementById('errorModal') : null;
+            if(modalErrorElmt !== null) {
+                var modalError = new window.bootstrap.Modal(modalErrorElmt, {});
+                modalError.show();
+            }
+
+            // Mouseover icons tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new window.bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Keep soundtrack playing
+            var playMusic = document.getElementById("playMusic");
+            if (localStorage.getItem("isPlaying") === "true"){
+                playMusic.currentTime = parseFloat(localStorage.getItem("currentTime"));
+                playMusic.volume = parseFloat(localStorage.getItem("volume"))
+                playMusic.play();
+            }
+        };
+        // Keeps track of song current time upon leaving a page
+        window.onunload = function(){
+            if (localStorage.getItem("isPlaying") === "true"){
+                localStorage.setItem("currentTime", document.getElementById("playMusic").currentTime);
+                localStorage.setItem("volume", document.getElementById("playMusic").volume);
+            }
+            else {
+                localStorage.setItem("currentTime", 0);
+            }
+        }
+    </script>
 </html>

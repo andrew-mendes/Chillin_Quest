@@ -3,7 +3,6 @@
 import re
 import string
 import base64
-import datetime
 
 # CS50's SQL
 from cs50 import SQL
@@ -23,7 +22,7 @@ from flask_wtf.file import FileField
 from wtforms import SubmitField
 
 # Helpers functions
-from helpers import allowed_file, login_required, error
+from helpers import allowed_file, error, knowdate, login_required
 
 
 # Configure application
@@ -183,6 +182,9 @@ def done(quest_id=None):
     # Identify user
     user_id = session["user_id"]
 
+    # Check user's system current date and time
+    currentDT = knowdate()
+
     # Obtain user quest of choice
     if request.method == "POST":
         quest_done = db.execute("SELECT done FROM quests WHERE id = ? AND user_id = ?", quest_id, user_id)[0]["done"]
@@ -194,8 +196,8 @@ def done(quest_id=None):
         # Toggle 'quest done' status and sets the time of completion
         else:
             db.execute("UPDATE quests SET (done, timestamp) = (?, ?) WHERE id = ? AND user_id = ?",
-                       True, datetime.datetime.now(), quest_id, user_id)
-
+                       True, currentDT, quest_id, user_id)
+            
         # Return to homepage
         return redirect("/")
 

@@ -121,7 +121,7 @@ Important: A unique Secret Key should be provided on line 50 before deploying th
 
 
 #### helpers
-helpers.&#8203;py - Support file containing 3 additional functions required for the application to run.
+helpers.&#8203;py - Support file containing 4 additional functions required for the application to run.
 
 #### chillinquest
 chillinquest.&#8203;db - The database, containing two tables:
@@ -165,14 +165,6 @@ NOTE: Should be modified before usage if launching for production.
 
 ## 💻 UI
 
-#### Soundtrack Player
-
-At the top left of all screens the user will find a button to play the Chillin' Quest main theme, _Feet on the Road_, which will play on loop despite of the screen, until clicked again to cancel. Buttons to increase and decrease volume are there as well.
-
-And no, it will **not** play automatically! Don't worry.
-
-**NOTE:** Due to some current browsers' limitations concerning media autoplay, upon returning to previous pages the soundtrack may stop playing, returning automatically if the user refreshes or clicks on any internal links. This is something I plan to study and solve in future versions, maybe built on React. I will have research further.
-
 #### Starting and Register Screens
 
 <img src="README.assets\startandregister.jpg" alt="starting" style="zoom: 100%;" />
@@ -180,6 +172,14 @@ And no, it will **not** play automatically! Don't worry.
 At the main screen the user has the option to register a new account or log in if they already have one.
 
 🔼 [return to top](#table-of-contents)
+
+#### Soundtrack Player
+
+At the top left of all screens the user will find a button to play the Chillin' Quest main theme, _Feet on the Road_, which will play _on loop*_ despite of the screen until clicked again to cancel. Buttons to increase and decrease volume are there as well.
+
+And no, it will **not** play automatically! Don't worry.
+
+_*Due to some current browsers' limitations concerning media autoplay, upon returning to previous pages or receiving an error message of any type the soundtrack may stop playing, returning automatically if the user refreshes or clicks on any internal links. This is something I plan to study and solve in future versions, maybe built on React. I will have to research further._
 
 #### Home
 
@@ -200,7 +200,7 @@ The user will be greeted with a quick starting quest showing how to use the appl
 **Quests**
 Quests clicked expand a box with its description, reward, as well as completion, delete and edit buttons at the bottom.
 
-Once marked as completed, the title bar turns gold and completion date and time will be shown.
+Once marked as completed, the title bar turns gold and the completion date and time captured from the user's system will be shown.
 
 🔼 [return to top](#table-of-contents)
 
@@ -236,6 +236,7 @@ A tree-like UI with quests parenting others as a requirement to unlock the next 
 
 **Dynamic quest search tool**
 I had not thought about this at the start of the project, and after some research I noticed that to have quests shown dynamically it would require me to change the whole way I implemented the quests through Flask and add some JavaScript to show them or maybe do it all on React, which I still intend to learn. So maybe (probably) on version 2.0.
+
 
 🔼 [return to top](#table-of-contents)
 
