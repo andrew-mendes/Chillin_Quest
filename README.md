@@ -7,8 +7,7 @@ ___
 
 <a href='https://www.edx.org' target="_blank"><img alt='EDX' src='https://img.shields.io/badge/edX®-100000?style=flat&logo=EDX&logoColor=FFFFFF&labelColor=77202E&color=8B8D90'/></a> <a href='https://python.org' target="_blank"><img alt='Python' src='https://img.shields.io/badge/Made_with Python-100000?style=flat&logo=Python&logoColor=ffde57&labelColor=4584b6&color=646464'/></a> <a href='https://developer.mozilla.org/pt-BR/docs/Web/JavaScript' target="_blank"><img alt='JavaScript' src='https://img.shields.io/badge/Made_with JavaScript-100000?style=flat&logo=JavaScript&logoColor=f7df1e&labelColor=000000&color=2F2F2F'/></a> <a href='https://flask.palletsprojects.com/en/2.0.x/' target="_blank"><img alt='Flask' src='https://img.shields.io/badge/Made_with Flask-100000?style=flat&logo=Flask&logoColor=000000&labelColor=FFFFFF&color=2F2F2F'/></a> <a href='https://jquery.com' target="_blank"><img alt='JQuery' src='https://img.shields.io/badge/JQuery-100000?style=flat&logo=JQuery&logoColor=7acef4&labelColor=0769ad&color=FFFFFF'/></a> <a href='https://getbootstrap.com' target="_blank"><img alt='Bootstrap' src='https://img.shields.io/badge/Bootstrap-100000?style=flat&logo=Bootstrap&logoColor=563d7c&labelColor=FFFFFF&color=563d7c'/></a>
 
-## 🎞️ Video Demo
-<URL HERE>
+##🎞️ [Video Demo](https://youtu.be/in0qF2AU-YU)
 
 ## ✏️ Description
 
