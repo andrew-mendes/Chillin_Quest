@@ -136,7 +136,7 @@ NOTE: Should be modified before usage if launching for production.
 🔼 [return to top](#table-of-contents)
 
 #### **/templates**
-##### Folder containning the following html and txt templates:
+##### Folder containing the following html and txt templates:
 - **account.html** - User Profile & Account management.
 - **all.html** - Renders all quests list in the homepage right column.
 - **deletequest.html** - Renders delete quest confirmation popup.
