@@ -185,18 +185,23 @@ _*Due to some current browsers' limitations concerning media autoplay, upon retu
 <img src="README.assets\home.jpg" alt="home" style="zoom: 100%;"/>
 
 **User card**
+
 A user card with a default picture, name and title will be shown on the left. All of these can be changed at the Profile & Account page, accessible at the top right of the screen.
 
 **Quests summary**
+
 Just below the user will find a small box with its open and completed quests summary.
 
 **Quests bar**
+
 On the right panel the user will have access to a quests bar that provides options to create new quests, search for quests and apply filters. Below is the quest list.
 
 **Tutorial**
+
 The user will be greeted with a quick starting quest showing how to use the application. It's pretty straight-forward.
 
 **Quests**
+
 Quests clicked expand a box with its description, reward, as well as completion, delete and edit buttons at the bottom.
 
 Once marked as completed, the title bar turns gold and the completion date and time captured from the user's system will be shown.
@@ -225,15 +230,19 @@ All of these features should be on future any future releases of this project wh
 #### Scrapped features
 
 **Icons Gallery**
+
 I planed on it but decided to leave it open to the user to decide whatever image they want as icons for quest. There's also a default one that comes along if none is chosen.
 
 **Local Storage**
-At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this
+
+At start I intended to store user information locally and have cloud save and synchronization options. I moved on to implement it as a server sided DB as it was already within my current knowledge to do it this way.
 
 **Tree-like quests UI**
+
 A tree-like UI with quests parenting others as a requirement to unlock the next (e.g. "Play Hotel California", which could only be unlocked after one completed "Learn to play the guitar"). This would probably be a very cool feature but nonetheless very advanced for the front-end. 
 
 **Dynamic quest search tool**
+
 I had not thought about this at the start of the project, and after some research I noticed that to have quests shown dynamically it would require me to change the whole way I implemented the quests through Flask and add some JavaScript to show them or maybe do it all on React, which I still intend to learn. So maybe (probably) on version 2.0.
 
 
