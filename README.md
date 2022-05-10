@@ -276,6 +276,7 @@ I would also like to congratulate and give my sincere thanks Professor David J. 
 
  <b>Andrew Mendes</b>
  Former IT professional getting back to coding
+ 
  Macaé, RJ - Brazil
 
 [![Github Badge](https://img.shields.io/badge/-AndrewMendes-black?style=flat-square&logo=Github&logoColor=white&link=https://github.com/andrew-mendes)](https://github.com/andrew-mendes) [![Linkedin Badge](https://img.shields.io/badge/-AndrewMendes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-mendes-73805720b/)](https://www.linkedin.com/in/andrew-mendes-73805720b/) [![Gmail Badge](https://img.shields.io/badge/-andrewmendes@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andrewmendes@gmail.com)](mailto:tgmarinho@gmail.com)
