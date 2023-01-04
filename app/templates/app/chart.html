@@ -1,0 +1,30 @@
+{% block chart %}
+<container id="chart-view" class="card bg-light border-0 rounded-0 h-100 w-100 overflow-hidden px-1" style="display: none;">
+<div id="filterbar" class="row d-flex mx-auto py-1">
+    <!-- Dropdown -->
+    <div class="col-3 d-flex justify-content-center p-0 m-auto">
+        <div class="row">
+            <div class="btn-group">
+                <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Period
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a id="day-range" class="dropdown-item disabled" href="#">Days</a></li>
+                    <li><a id="month-range" class="dropdown-item" href="#">Months</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Date pickers -->
+    <div class="col-9 d-flex justify-content-start p-0">
+        <span><small>Start</small></span>
+        <input id="chart-start" type="date" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" min="{{ min_date }}" max="{{ max_date }}" style="display: block;">
+        <input id="month-start" type="month" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" min="{{ min_month}}" max="{{ max_month }}" style="display: none;" pattern="[0-9]{4}-[0-9]{2}">
+        <span><small>End</small></span>
+        <input id="chart-end" type="date" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" min="{{ min_date }}" max="{{ max_date }}" style="display: block;">
+        <input id="month-end" type="month" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" min="{{ min_month }}" max="{{ max_month }}" style="display: none;" pattern="[0-9]{4}-[0-9]{2}">
+    </div>
+</div>
+<div id="chart" class="h-100 w-100"></div>
+</container>
+{% endblock %}

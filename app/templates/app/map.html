@@ -1,0 +1,29 @@
+{% block map %}
+<div id="map-view" class="card bg-secondary border-0 h-100">
+<div class="card-img pointer-enabled rounded-0 h-100" id="map"></div>
+<div class="card-img-overlay d-flex justify-content-end pointer-disabled">
+    <!-- Info Panel -->
+    <div class="pointer-disabled mt-auto mb-10">
+        <ul class="list-group list-group-flush mx-100 rounded-1">
+            <li class="list-group-item text-center bg-gray my-0 px-auto py-1 d-flex align-items-center justify-content-center">
+                <span class="">View:&nbsp;</span>
+                <button id="clusterToggle" class="btn btn-sm btn-outline-dark py-0 pointer-enabled" style="display: none;">Clusters</button>
+                <div id="spinner" class="spinner-border spinner-border-sm text-secondary p-0" role="status" style="display: block;">
+                    <span class="sr-only"></span>
+                </div>
+            </li>
+            <li class="list-group-item text-center text-nowrap py-1">
+                <input id="calendar" name="calendar" type="date" class="btn btn-sm btn-light border-secondary pointer-enabled" value="{{ max_date }}" min="{{ min_date }}" max="{{ max_date }}">
+            </li>
+            <li id="firecount" class="list-group-item text-nowrap py-1">
+                <strong>Fires: --</strong>
+            </li>
+            <li class="list-group-item text-nowrap py-1">
+                <strong id="difPercent" class=""></strong>
+                <span id="difPercentCompl">-- from last day</span>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock %}

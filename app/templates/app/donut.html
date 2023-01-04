@@ -1,0 +1,11 @@
+{% block chart %}
+<container id="donut-view" class="card bg-light border-0 rounded-0 h-100 w-100 overflow-hidden px-1" style="display: none;">
+<div id="filterbar" class="row d-flex mx-auto py-1">
+    <!-- Month picker -->
+    <div class="d-flex justify-content-center p-0">
+        <input id="donut-month" type="month" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" pattern="[0-9]{4}-[0-9]{2}">
+    </div>
+</div>
+<div id="donut" class="h-100 w-100"></div>
+</container>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% block list %}
+<container id="list-view" class="card bg-light border-0 rounded-0 h-100 w-100 overflow-auto px-1" style="display: none;">
+<i id="top-button" class="btn btn-danger bi bi-arrow-bar-up py-1 px-2"></i>
+<div id="filterbar" class="row d-flex mx-auto py-1">
+    <div class="col-6">
+        <div class="row">
+            <span class="d-flex flex-nowrap my-2"><strong>Records:&nbsp;</strong><span id="list-records">--</span></span>
+        </div>
+    </div>
+    <div class="col-6 d-flex justify-content-start">
+        <div class="row">
+            <span class="my-1">
+                <small>Date</small>
+                <input id="list-date" type="date" class="col-xs-4 btn btn-sm btn-light p-1 m-1 border-secondary pointer-enabled" min="{{ min_date }}" max="{{ max_date }}">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="table-responsive-sm">
+    <table class="table table-sm table-striped overflow-auto">
+        <thead class="sticky-sm-top bg-white">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+</div>
+</container>
+{% endblock %}
